@@ -1,0 +1,8 @@
+---
+
+- name: REDIS | Configuring service
+  systemd:
+    name: redis-server
+    state: "{{ redis_service_state }}"
+    enabled: "{{ redis_service_enabled }}"
+    daemon_reload: yes

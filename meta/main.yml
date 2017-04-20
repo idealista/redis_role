@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  company: Idealista S.A.
+  description: Redis in-memory data structure store
+  min_ansible_version: 2.2.1.0
+  license: Apache 2.0
+  platforms:
+    - name: Debian
+      versions:
+        - all
+  categories:
+    - database
+    - cache
+    - message broker

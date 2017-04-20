@@ -1,0 +1,3 @@
+---
+
+redis_maxmemory: 256mb
