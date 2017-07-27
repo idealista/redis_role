@@ -1,0 +1,13 @@
+[Unit]
+Description=Redis In-Memory Data Store
+After=network.target
+
+[Service]
+User=redis
+Group=redis
+ExecStart= "{{ redis_conf_path }}/{{ redis_mode }}-manager.sh start"
+ExecStop= "{{ redis_conf_path }}/{{ redis_mode }}-manager.sh stop"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

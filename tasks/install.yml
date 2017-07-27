@@ -1,8 +1,33 @@
 ---
+- name: REDIS | Create installation path
+  file:
+    path: "{{ redis_install_path }}"
+    state: directory
+    mode: 0755
 
-- name: REDIS | Install Redis
-  apt:
-    name: redis-server
-    state: present
-    install_recommends: yes
-    update_cache: yes
+- name: REDIS | Download sources
+  get_url:
+    url: http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
+    dest: /tmp
+    validate_certs: no
+
+- name: REDIS | Extract sources
+  unarchive:
+    copy: no
+    src: /tmp/redis-{{ redis_version }}.tar.gz
+    dest: "{{ redis_install_path }}"
+
+- name: REDIS | Make
+  make:
+    chdir: "{{ redis_install_path }}"
+
+- name: REDIS | Make test
+  make:
+    chdir: "{{ redis_install_path }}"
+    target: test
+
+- name: REDIS | Make install
+  make:
+    chdir: "{{ redis_install_path }}"
+    target: install
+  become: yes

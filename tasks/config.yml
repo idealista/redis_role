@@ -1,10 +1,28 @@
 ---
 
+- name: REDIS | Create server conf path
+  file:
+    path: "{{ redis_conf_path }}"
+    state: directory
+    mode: 0755
+
 - name: REDIS | Copy server config
   template:
     src: redis.conf.j2
     dest: "{{ redis_conf_path }}/redis.conf"
     mode: 0644
-    #owner: "{{ redis_user }}"
-    #group: "{{ redis_group }}"
+  notify: restart redis
+
+- name: REDIS | Copy manager script
+  template:
+    src: "{{ redis_mode }}-manager.sh.j2"
+    dest: "{{ redis_conf_path }}/{{ redis_mode }}-manager.sh"
+    mode: 0644
+  notify: restart redis
+
+- name: REDIS | Copy server config
+  template:
+    src: redis-server.service.j2
+    dest: /lib/systemd/system/redis-server.service
+    mode: 0644
   notify: restart redis
