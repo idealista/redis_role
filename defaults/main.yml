@@ -4,10 +4,8 @@ redis_install_path: "/redis" #redis source will be here
 redis_conf_path: "/etc/redis" #redis configuration and running instance data will be here
 redis_mode: cluster # custer or simple
 redis_version: 4.0.1
-redis_cluster_start_port: 7000
-redis_cluster_num_nodes: 6
-redis_cluster_replicas: 1
-
+# current state: started, stopped
+redis_service_state: started
 
 #### redis.conf variables ####
 
@@ -24,17 +22,22 @@ redis_save:
 redis_confs:
   bind: "0.0.0.0"
   protected-mode: "no"
-  port: "6379" # single mode
+  port: "6379" # this is mandatory
   pidfile: "redis.pid"
   loglevel: "notice"
   logfile: "/var/log/redis.log"
   databases: "16"
   rdbcompression: "yes"
   rdbchecksum: "yes"
-  dbfilename: "dump.rdb"
-  daemonize: "yes"
   supervised: "systemd"
   slave-serve-stale-data: "yes"
   slave-read-only: "yes"
   stop-writes-on-bgsave-error: "yes"
-  cluster-node-timeout: "2000"
+  #include to start node as cluster member
+  # cluster-node-timeout: "2000"
+  # cluster-enable: "yes"
+  # cluster-config-file: node.conf
+  appendonly: "yes"
+  appendfilename: "/etc/redis/appendonly-db.aof"
+  dbfilename: "/etc/redis/dump.rdb"
+  daemonize: "yes" # mandatory for cluster node

@@ -11,14 +11,12 @@
     src: redis.conf.j2
     dest: "{{ redis_conf_path }}/redis.conf"
     mode: 0644
-  notify: restart redis
 
 - name: REDIS | Copy manager script
   template:
-    src: "{{ redis_mode }}-manager.sh.j2"
-    dest: "{{ redis_conf_path }}/{{ redis_mode }}-manager.sh"
+    src: instance-manager.sh.j2
+    dest: "{{ redis_conf_path }}/instance-manager.sh"
     mode: 0644
-  notify: restart redis
 
 - name: REDIS | Copy server config
   template:
@@ -26,3 +24,12 @@
     dest: /lib/systemd/system/redis-server.service
     mode: 0644
   notify: restart redis
+
+- name: REDIS | Configure nodes as cluster
+  template:
+    src: redis-server.service.j2
+    dest: /lib/systemd/system/redis-server.service
+    mode: 0644
+  notify: restart redis
+  when: redis_mode == 'cluster'
+  run_once: True
