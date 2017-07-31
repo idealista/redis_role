@@ -6,6 +6,8 @@ redis_mode: cluster # custer or simple
 redis_version: 4.0.1
 # current state: started, stopped
 redis_service_state: started
+#redis_cluster_replicas: 1
+
 
 #### redis.conf variables ####
 
