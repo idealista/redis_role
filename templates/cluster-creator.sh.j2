@@ -1,0 +1,15 @@
+#!/bin/bash
+
+PORT={{ redis_confs.port }}
+HOSTS_NAMES={{ hosts }}
+REPLICAS={{ redis_cluster_replicas }}
+REDIS_PATH={{ redis_install_path }}
+
+HOSTS="";
+
+for h in $HOSTS_NAMES; do
+  HOSTS="$HOSTS $h:$PORT"
+done
+
+$REDIS_PATH/src/redis-trib.rb --replicas $REPLICAS $HOSTS
+

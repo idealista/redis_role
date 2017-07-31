@@ -25,11 +25,16 @@
     mode: 0644
   notify: restart redis
 
-- name: REDIS | Configure nodes as cluster
+- name: REDIS | Copy cluster creator
   template:
-    src: redis-server.service.j2
-    dest: /lib/systemd/system/redis-server.service
-    mode: 0644
+    src: cluster-creator.sh.j2
+    dest: "{{ redis_conf_path }}/cluster-creator.sh"
+    mode: 0755
   notify: restart redis
+  when: redis_mode == 'cluster'
+
+- name: REDIS | Configure nodes as cluster
+  shell:
+    free_form: "{{ redis_conf_path }}/cluster-creator.sh"
   when: redis_mode == 'cluster'
   run_once: True
