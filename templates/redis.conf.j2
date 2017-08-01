@@ -4,10 +4,10 @@ include {{ redis_install_path }}/redis.conf
 
 
 
-{% if redis_conf %}
-{% for key,value in redis_conf.iteritems() %}
-{{ key }} {{ value }}
-{% endfor %}
+{% if redis_confs %}
+    {% for key,value in redis_confs.iteritems() %}
+        {{ key }} {{ value }}
+    {% endfor %}
 {% endif %}
 
 {% if redis_save %}
