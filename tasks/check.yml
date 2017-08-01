@@ -1,0 +1,8 @@
+---
+
+- name: CHECK | Redis already installed
+  shell: '[[ -x "$(command -v redis-sessrver)" ]] && echo "True" || echo "False"'
+  register: redis_is_installed
+
+- name: CHECK | Installed version
+  shell
