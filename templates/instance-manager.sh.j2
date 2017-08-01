@@ -1,9 +1,10 @@
 #!/bin/bash
 
 PORT={{ redis_confs.port }}
+REDIS_CONF_PATH={{ redis_conf_path }}
 
 start() {
-    redis-server redis.conf
+    redis-server $REDIS_CONF_PATH/redis.conf
     exit 0
 }
 
