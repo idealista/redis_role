@@ -44,5 +44,5 @@ redis_confs:
   # cluster-config-file: node.conf
   appendonly: "yes"
   appendfilename: "/etc/redis/appendonly-db.aof"
-  dbfilename: "/etc/redis/dump.rdb"
+  dbfilename: "dump.rdb"
   daemonize: "yes" # mandatory for cluster node
