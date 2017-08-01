@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PORT={{ redis_confs.port }}
-HOSTS_NAMES={{ hosts }}
+HOSTS_NAMES={{ inventory_hostname }}
 REPLICAS={{ redis_cluster_replicas }}
 REDIS_PATH={{ redis_install_path }}
 
