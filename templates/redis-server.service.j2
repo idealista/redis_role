@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=redis
 Group=redis
-ExecStart= "{{ redis_conf_path }}/instance-manager.sh start"
-ExecStop= "{{ redis_conf_path }}/instance-manager.sh stop"
+ExecStart= {{ redis_conf_path }}/instance-manager.sh start
+ExecStop= {{ redis_conf_path }}/instance-manager.sh stop
 Restart=always
 
 [Install]

@@ -8,6 +8,9 @@ redis_version: 4.0.1
 redis_service_state: started
 #redis_cluster_replicas: 1
 
+# start on boot
+redis_service_enabled: yes
+
 
 #### redis.conf variables ####
 
