@@ -1,9 +1,4 @@
 ---
-- name: REDIS | Create installation path
-  file:
-    path: "{{ redis_install_path }}"
-    state: directory
-    mode: 0755
 
 - name: REDIS | Download sources
   get_url:
@@ -15,7 +10,10 @@
   unarchive:
     copy: no
     src: /tmp/redis-{{ redis_version }}.tar.gz
-    dest: "{{ redis_install_path }}"
+    dest: /tmp
+
+- name: REDIS | Move sources to install path
+  shell: "mv /tmp/redis-{{ redis_version }}/ {{ redis_install_path }}"
 
 - name: REDIS | Make
   make:
