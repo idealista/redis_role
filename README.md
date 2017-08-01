@@ -58,7 +58,17 @@ Look to the [defaults](defaults/main.yml) properties file to see the possible co
 
 ## Testing
 
+### Testing cluster mode
+
+```sh
+cd test/cluster-mode
+molecule test
 ```
+
+### Testing single mode
+
+```sh
+cd test/single-mode
 molecule test
 ```
 

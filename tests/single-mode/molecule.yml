@@ -1,0 +1,44 @@
+---
+molecule:
+  # directory in CWD to place all temp files, etc.
+  molecule_dir: .molecule
+
+  # where temporary state will be stored (lives under molecule_dir)
+  state_file: state
+
+  goss_dir: goss
+  goss_playbook: verfier.yml
+
+
+  # directories to ignore when doing trailing whitespace checks on files during verify command
+  ignore_paths:
+    - .git
+    - .vagrant
+    - .molecule
+  # directory containing group_vars to use with ansible
+  group_vars: group_vars
+
+# ansible related configuration
+ansible:
+  playbook: playbook.yml
+
+docker:
+    containers:
+      - name: redis.cont
+        ansible_groups:
+          - redis
+        image: python
+        image_version: 2.7.13-jessie
+
+        port_bindings:
+          6379: 6379
+
+        privileged: True
+        cap_add:
+          - SYS_ADMIN
+        volume_mounts:
+          - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+        command: '/lib/systemd/systemd'
+
+verifier:
+  name: goss

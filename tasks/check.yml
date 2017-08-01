@@ -1,8 +1,21 @@
 ---
 
 - name: CHECK | Redis already installed
-  shell: '[[ -x "$(command -v redis-sessrver)" ]] && echo "True" || echo "False"'
-  register: redis_is_installed
+  shell: '[[ -x "$(command -v redis-server)" ]] && echo "True" || echo "False"'
+  register: redis_is_installed_command
+  when: redis_is_installed is undefined
+
+- name: CHECK | Set installed fact
+  set_fact:
+    redis_is_installed: "{{ redis_is_installed_command.stdout }}"
 
 - name: CHECK | Installed version
-  shell
+  shell: 'redis-server -v | tr " " "\n" | grep v= | cut -d"=" -f2'
+  register: redis_installed_version_command
+  when: redis_is_installed == True
+
+- name: CHECK | Set version fact
+  set_fact:
+    redis_installed_version: "{{ redis_installed_version_command.stdout }}"
+    redis_request_version: "{{ redis_version }}"
+  when: redis_is_installed == True
