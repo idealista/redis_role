@@ -3,38 +3,49 @@
   debug:
     var: redis_is_installed
 
+- name: DEBUG | vars
+  debug:
+    var: redis_install_new_version
+
+
+- name: REDIS | Remove install folder is redis is not installed
+  file:
+    state: absent
+    path: "{{ redis_install_path }}"
+  when: redis_is_installed == false
+
 - name: REDIS | Download sources
   get_url:
     url: http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
     dest: /tmp
     validate_certs: no
-  when: redis_is_installed == False or redis_installed_version != redis_request_version
+  when: redis_is_installed == false or redis_install_new_version == true
 
 - name: REDIS | Extract sources
   unarchive:
     copy: no
     src: /tmp/redis-{{ redis_version }}.tar.gz
     dest: /tmp
-  when: redis_is_installed == False or redis_installed_version != redis_request_version
+  when: redis_is_installed == False or redis_install_new_version == True
 
 - name: REDIS | Move sources to install path
   shell: "mv /tmp/redis-{{ redis_version }}/ {{ redis_install_path }}"
-  when: redis_is_installed == False or redis_installed_version != redis_request_version
+  when: redis_is_installed == False or redis_install_new_version == True
 
 - name: REDIS | Make
   make:
     chdir: "{{ redis_install_path }}"
-  when: redis_is_installed == False or redis_installed_version != redis_request_version
+  when: redis_is_installed == False or redis_install_new_version == True
 
 - name: REDIS | Make test
   make:
     chdir: "{{ redis_install_path }}"
     target: test
-  when: redis_is_installed == False or redis_installed_version != redis_request_version
+  when: redis_is_installed == False or redis_install_new_version == True
 
 - name: REDIS | Make install
   make:
     chdir: "{{ redis_install_path }}"
     target: install
   become: yes
-  when: redis_is_installed == False or redis_installed_version != redis_request_version
+  when: redis_is_installed == False or redis_install_new_version == True

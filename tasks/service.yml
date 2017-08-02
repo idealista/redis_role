@@ -6,4 +6,4 @@
     state: "{{ redis_service_state }}"
     enabled: "{{ redis_service_enabled }}"
     daemon_reload: yes
-  when: redis_is_installed == False or redis_installed_version != redis_request_version
+  when: redis_is_installed == False or redis_install_new_version == True
