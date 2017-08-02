@@ -7,7 +7,7 @@ redis_version: 4.0.1
 # current state: started, stopped
 redis_service_state: started
 #redis_cluster_replicas: 1
-
+redis_install_new_version: False
 # start on boot
 redis_service_enabled: yes
 
@@ -43,6 +43,6 @@ redis_confs:
   # cluster-enable: "yes"
   # cluster-config-file: node.conf
   appendonly: "yes"
-  appendfilename: "/etc/redis/appendonly-db.aof"
+  appendfilename: "appendonly-db.aof"
   dbfilename: "dump.rdb"
   daemonize: "yes" # mandatory for cluster node
