@@ -21,6 +21,8 @@ molecule:
 # ansible related configuration
 ansible:
   playbook: playbook.yml
+  ansiblecfg_defaults:
+    roles_path: ../../../../
 
 docker:
     containers:
@@ -29,9 +31,6 @@ docker:
           - redis
         image: python
         image_version: 2.7.13-jessie
-
-        port_bindings:
-          6379: 6379
 
         privileged: True
         cap_add:

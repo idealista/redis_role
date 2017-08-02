@@ -3,10 +3,14 @@ Description=Redis In-Memory Data Store
 After=network.target
 
 [Service]
-User=redis
-Group=redis
-ExecStart= {{ redis_conf_path }}/instance-manager.sh start
-ExecStop= {{ redis_conf_path }}/instance-manager.sh stop
+Type=forking
+PIDFile={{ redis_confs.pidfile }}
+
+User={{ redis_user }}
+Group={{ redis_user }}
+
+ExecStart={{ redis_conf_path }}/instance-manager.sh start
+ExecStop={{ redis_conf_path }}/instance-manager.sh
 Restart=always
 
 [Install]

@@ -1,8 +1,9 @@
 ---
 
 - name: CHECK | Redis already installed
-  shell: '[[ -x "$(command -v redis-server)" ]] && echo "True" || echo "False"'
+  command: '[[ -x "$(command -v redis-server)" ]] && echo "True" || echo "False"'
   register: redis_is_installed_command
+  changed_when: false
 
 - name: CHECK | Set installed fact
   set_fact:

@@ -6,3 +6,4 @@ tests/__pycache__
 .cache
 *.iml
 .idea/
+*.retry

@@ -1,7 +1,7 @@
 #### installation variables ####
-
+redis_user: redis
 redis_install_path: "/redis" #redis source will be here
-redis_conf_path: "/etc/redis" #redis configuration and running instance data will be here
+redis_conf_path: "/conf/redis" #redis configuration and running instance data will be here
 redis_mode: cluster # custer or simple
 redis_version: 4.0.1
 # current state: started, stopped
@@ -28,7 +28,7 @@ redis_confs:
   bind: "0.0.0.0"
   protected-mode: "no"
   port: "6379" # this is mandatory
-  pidfile: "redis.pid"
+  pidfile: "/conf/redis/redis.pid"
   loglevel: "notice"
   logfile: "/var/log/redis.log"
   databases: "16"

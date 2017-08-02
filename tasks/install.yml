@@ -1,12 +1,25 @@
 ---
-- name: DEBUG | vars
-  debug:
-    var: redis_is_installed
 
-- name: DEBUG | vars
-  debug:
-    var: redis_install_new_version
+- name: REDIS | Create redis group
+  group:
+    name: "{{ redis_user }}"
+    state: present
+  when: redis_is_installed == false
 
+- name: REDIS | Create redis user
+  user:
+    name: "{{ redis_user }}"
+    group: "{{ redis_user }}"
+  when: redis_is_installed == false
+
+- name: REDIS | Create log file
+  file:
+    state: touch
+    owner: redis
+    group: redis
+    mode: 0644
+    path: "{{ redis_confs.logfile }}"
+  when: redis_is_installed == false and redis_confs.logfile is defined
 
 - name: REDIS | Remove install folder is redis is not installed
   file:
@@ -29,7 +42,7 @@
   when: redis_is_installed == False or redis_install_new_version == True
 
 - name: REDIS | Move sources to install path
-  shell: "mv /tmp/redis-{{ redis_version }}/ {{ redis_install_path }}"
+  command: "mv /tmp/redis-{{ redis_version }}/ {{ redis_install_path }}"
   when: redis_is_installed == False or redis_install_new_version == True
 
 - name: REDIS | Make
