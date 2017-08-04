@@ -62,3 +62,19 @@
     target: install
   become: yes
   when: redis_is_installed == False or redis_install_new_version == True
+
+
+- name: REDIS | install ruby
+  apt:
+    name: ruby
+    update_cache: yes
+  become: yes
+  when: redis_mode == 'cluster'
+
+- name: REDIS | install redis gem
+  gem:
+    name: redis
+    state: present
+  become: yes
+  when: redis_mode == 'cluster'
+
