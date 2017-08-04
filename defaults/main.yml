@@ -40,7 +40,7 @@ redis_confs:
   stop-writes-on-bgsave-error: "yes"
   #include to start node as cluster member
   # cluster-node-timeout: "2000"
-  # cluster-enable: "yes"
+  # cluster-enabled: "yes"
   # cluster-config-file: node.conf
   appendonly: "yes"
   appendfilename: "appendonly-db.aof"
