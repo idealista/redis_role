@@ -2,14 +2,17 @@
 
 PORT={{ redis_confs.port }}
 HOSTS_NAMES="{{ groups['redis'] | join(' ')}}"
-REPLICAS={{ redis_cluster_replicas }}
+{% if redis_cluster_replicas != 0 -%}
+REPLICAS="--replicas {{ redis_cluster_replicas }}"
+{%- endif %}
 REDIS_PATH={{ redis_install_path }}
 
 HOSTS="";
 
 for h in $HOSTS_NAMES; do
-  HOSTS="$HOSTS $h:$PORT"
+    # redis doesnt accept hostname as cluster members https://github.com/antirez/redis/pull/2323
+  IP=$(host $h | grep address  | cut -d" " -f4)
+  HOSTS="$HOSTS $IP:$PORT"
 done
 
-yes "yes" | $REDIS_PATH/src/redis-trib.rb create --replicas $REPLICAS $HOSTS
-
+yes "yes" | $REDIS_PATH/src/redis-trib.rb create $REPLICAS $HOSTS
