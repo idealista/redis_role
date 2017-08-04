@@ -44,6 +44,6 @@
   when: redis_mode == 'cluster'
 
 - name: REDIS | Configure nodes as cluster
-  script: "{{ redis_conf_path }}/cluster-creator.sh"
+  command: "{{ redis_conf_path }}/cluster-creator.sh"
   when: redis_mode == 'cluster'
   run_once: True
