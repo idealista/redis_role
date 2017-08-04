@@ -42,8 +42,3 @@
     mode: 0755
   notify: restart redis
   when: redis_mode == 'cluster'
-
-- name: REDIS | Configure nodes as cluster
-  command: "{{ redis_conf_path }}/cluster-creator.sh"
-  when: redis_mode == 'cluster'
-  run_once: True

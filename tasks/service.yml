@@ -7,3 +7,8 @@
     enabled: "{{ redis_service_enabled }}"
     daemon_reload: yes
   when: redis_is_installed == False or redis_install_new_version == True
+
+- name: REDIS | Configure nodes as cluster
+  command: "{{ redis_conf_path }}/cluster-creator.sh"
+  when: redis_mode == 'cluster'
+  run_once: True

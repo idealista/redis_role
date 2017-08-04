@@ -11,5 +11,5 @@ for h in $HOSTS_NAMES; do
   HOSTS="$HOSTS $h:$PORT"
 done
 
-$REDIS_PATH/src/redis-trib.rb create --replicas $REPLICAS $HOSTS
+yes "yes" | $REDIS_PATH/src/redis-trib.rb create --replicas $REPLICAS $HOSTS
 
