@@ -64,10 +64,13 @@
   when: redis_is_installed == False or redis_install_new_version == True
 
 
-- name: REDIS | install ruby
+- name: REDIS | cluster creator dependecy
   apt:
-    name: ruby
+    name: "{{ item }}"
     update_cache: yes
+  with_items:
+    - ruby
+    - host
   become: yes
   when: redis_mode == 'cluster'
 
