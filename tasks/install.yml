@@ -27,13 +27,16 @@
     path: "{{ redis_install_path }}"
   when: redis_is_installed == false
 
-- name: REDIS | install requiered redis isntallion packages
+- name: REDIS | install tcl
   apt:
-    name: "{{ item }}"
+    name: tcl
     update_cache: yes
-  with_items:
-    - ruby
-    - tcl
+  become: yes
+
+- name: REDIS | install ruby
+  apt:
+    name: ruby
+    update_cache: yes
   become: yes
   when: redis_mode == 'cluster'
 
