@@ -46,7 +46,6 @@ ansible-galaxy install -p roles -r requirements.yml -f
 Use in a playbook:
 
 ```
----
 - hosts: someserver
   roles:
     - role: redis
@@ -64,6 +63,8 @@ Look to the [defaults](defaults/main.yml) properties file to see the possible co
 cd test/cluster-mode
 molecule test
 ```
+
+The default test start a cluster of three docker container. To test cluster with six nodes uncomment containers definition on test/cluster-mode/molecule.yml and set replicas to 1 on group_vars and the run `molecule test`
 
 ### Testing single mode
 
