@@ -2,7 +2,7 @@
 
 redis_maxmemory: 256mb
 redis_mode: cluster
-redis_cluster_replicas: 1
+redis_cluster_replicas: 0 #change this to test with 6 nodes
 
 redis_confs:
   bind: "0.0.0.0"

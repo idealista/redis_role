@@ -79,44 +79,44 @@ docker:
       command: '/lib/systemd/systemd'
       network_mode: redis-cluster-network
 
-    - name: tomhagen.cont
-      ansible_groups:
-        - redis
-      image: python
-      image_version: 2.7.13-jessie
-
-      privileged: True
-      cap_add:
-        - SYS_ADMIN
-      volume_mounts:
-        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-      command: '/lib/systemd/systemd'
-      network_mode: redis-cluster-network
-
-    - name: fredo.cont
-      ansible_groups:
-        - redis
-      image: python
-      image_version: 2.7.13-jessie
-
-      privileged: True
-      cap_add:
-        - SYS_ADMIN
-      volume_mounts:
-        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-      command: '/lib/systemd/systemd'
-      network_mode: redis-cluster-network
-
-    - name: connie.cont
-      ansible_groups:
-        - redis
-      image: python
-      image_version: 2.7.13-jessie
-
-      privileged: True
-      cap_add:
-        - SYS_ADMIN
-      volume_mounts:
-        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-      command: '/lib/systemd/systemd'
-      network_mode: redis-cluster-network
+#    - name: tomhagen.cont
+#      ansible_groups:
+#        - redis
+#      image: python
+#      image_version: 2.7.13-jessie
+#
+#      privileged: True
+#      cap_add:
+#        - SYS_ADMIN
+#      volume_mounts:
+#        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+#      command: '/lib/systemd/systemd'
+#      network_mode: redis-cluster-network
+#
+#    - name: fredo.cont
+#      ansible_groups:
+#        - redis
+#      image: python
+#      image_version: 2.7.13-jessie
+#
+#      privileged: True
+#      cap_add:
+#        - SYS_ADMIN
+#      volume_mounts:
+#        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+#      command: '/lib/systemd/systemd'
+#      network_mode: redis-cluster-network
+#
+#    - name: connie.cont
+#      ansible_groups:
+#        - redis
+#      image: python
+#      image_version: 2.7.13-jessie
+#
+#      privileged: True
+#      cap_add:
+#        - SYS_ADMIN
+#      volume_mounts:
+#        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+#      command: '/lib/systemd/systemd'
+#      network_mode: redis-cluster-network
