@@ -1,2 +1,3 @@
 ---
 required_libs: []
+redis_source_url: http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
