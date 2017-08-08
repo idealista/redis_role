@@ -40,8 +40,8 @@ docker:
     - name: vito.cont
       ansible_groups:
         - redis
-      image: python
-      image_version: 2.7.13-jessie
+      image: geerlingguy/docker-debian9-ansible
+      image_version: latest
 
       privileged: True
       cap_add:
@@ -54,8 +54,8 @@ docker:
     - name: michael.cont
       ansible_groups:
         - redis
-      image: python
-      image_version: 2.7.13-jessie
+      image: geerlingguy/docker-debian9-ansible
+      image_version: latest
 
       privileged: True
       cap_add:
@@ -68,8 +68,8 @@ docker:
     - name: sony.cont
       ansible_groups:
         - redis
-      image: python
-      image_version: 2.7.13-jessie
+      image: geerlingguy/docker-debian9-ansible
+      image_version: latest
 
       privileged: True
       cap_add:
@@ -82,8 +82,8 @@ docker:
 #    - name: tomhagen.cont
 #      ansible_groups:
 #        - redis
-#      image: python
-#      image_version: 2.7.13-jessie
+#      image: geerlingguy/docker-debian9-ansible
+#      image_version: latest
 #
 #      privileged: True
 #      cap_add:
@@ -96,8 +96,8 @@ docker:
 #    - name: fredo.cont
 #      ansible_groups:
 #        - redis
-#      image: python
-#      image_version: 2.7.13-jessie
+#      image: geerlingguy/docker-debian9-ansible
+#      image_version: latest
 #
 #      privileged: True
 #      cap_add:
@@ -110,8 +110,8 @@ docker:
 #    - name: connie.cont
 #      ansible_groups:
 #        - redis
-#      image: python
-#      image_version: 2.7.13-jessie
+#      image: geerlingguy/docker-debian9-ansible
+#      image_version: latest
 #
 #      privileged: True
 #      cap_add:
