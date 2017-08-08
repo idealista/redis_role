@@ -70,7 +70,6 @@
     update_cache: yes
   with_items:
     - ruby
-    - host
   become: yes
   when: redis_mode == 'cluster'
 
