@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# redis doesnt accept hostname as cluster members https://github.com/antirez/redis/pull/2323
 {% for host in ansible_play_batch %}
 IPS="$IPS {{ hostvars[host]['ansible_default_ipv4']['address'] }}" # {{ host }}
 {% endfor %}
@@ -14,8 +15,6 @@ REDIS_PATH={{ redis_install_path }}
 HOSTS="";
 
 for IP in $IPS; do
-    # redis doesnt accept hostname as cluster members https://github.com/antirez/redis/pull/2323
-  #IP=$(host $h | grep address  | cut -d" " -f4)
   HOSTS="$HOSTS $IP:$PORT"
 done
 
