@@ -21,7 +21,7 @@
     path: "{{ redis_confs.logfile }}"
   when: redis_is_installed == false and redis_confs.logfile is defined
 
-- name: REDIS | Remove install folder is redis is not installed
+- name: REDIS | Remove install folder if redis is not installed
   file:
     state: absent
     path: "{{ redis_install_path }}"
