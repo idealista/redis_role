@@ -37,8 +37,8 @@ docker:
       - name: redis.cont
         ansible_groups:
           - redis
-        image: python
-        image_version: 2.7.13-jessie
+        image: geerlingguy/docker-debian9-ansible
+        image_version: latest
 
         privileged: True
         cap_add:
