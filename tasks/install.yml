@@ -27,6 +27,16 @@
     path: "{{ redis_install_path }}"
   when: redis_is_installed == false
 
+- name: REDIS | install requiered redis isntallion packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - ruby
+    - tcl
+  become: yes
+  when: redis_mode == 'cluster'
+
 - name: REDIS | Download sources
   get_url:
     url: http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
@@ -62,16 +72,6 @@
     target: install
   become: yes
   when: redis_is_installed == False or redis_install_new_version == True
-
-
-- name: REDIS | cluster creator dependecy
-  apt:
-    name: "{{ item }}"
-    update_cache: yes
-  with_items:
-    - ruby
-  become: yes
-  when: redis_mode == 'cluster'
 
 - name: REDIS | install redis gem
   gem:
