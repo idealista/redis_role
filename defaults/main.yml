@@ -1,5 +1,7 @@
 #### installation variables ####
 redis_user: redis
+redis_group: redis
+
 redis_install_path: "/redis" #redis source will be here
 redis_conf_path: "/conf/redis" #redis configuration and running instance data will be here
 redis_mode: simple # custer or simple

@@ -7,7 +7,7 @@ Type=forking
 PIDFile={{ redis_confs.pidfile }}
 
 User={{ redis_user }}
-Group={{ redis_user }}
+Group={{ redis_group }}
 
 ExecStart={{ redis_conf_path }}/instance-manager.sh start
 ExecStop={{ redis_conf_path }}/instance-manager.sh

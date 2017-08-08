@@ -12,24 +12,24 @@
   template:
     src: redis.conf.j2
     dest: "{{ redis_conf_path }}/redis.conf"
-    owner: redis
-    group: redis
+    owner: {{ redis_user }}
+    group: {{ redis_group }}
     mode: 0644
 
 - name: REDIS | Copy manager script
   template:
     src: instance-manager.sh.j2
     dest: "{{ redis_conf_path }}/instance-manager.sh"
-    owner: redis
-    group: redis
+    owner: {{ redis_user }}
+    group: {{ redis_group }}
     mode: 0755
 
 - name: REDIS | Copy server config
   template:
     src: redis-server.service.j2
     dest: /lib/systemd/system/redis-server.service
-    owner: redis
-    group: redis
+    owner: {{ redis_user }}
+    group: {{ redis_group }}
     mode: 0755
   notify: restart redis
 
@@ -37,8 +37,8 @@
   template:
     src: cluster-creator.sh.j2
     dest: "{{ redis_conf_path }}/cluster-creator.sh"
-    owner: redis
-    group: redis
+    owner: {{ redis_user }}
+    group: {{ redis_group }}
     mode: 0755
   notify: restart redis
   when: redis_mode == 'cluster'

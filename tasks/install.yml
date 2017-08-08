@@ -9,14 +9,14 @@
 - name: REDIS | Create redis user
   user:
     name: "{{ redis_user }}"
-    group: "{{ redis_user }}"
+    group: "{{ redis_group }}"
   when: redis_is_installed == false
 
 - name: REDIS | Create log file
   file:
     state: touch
-    owner: redis
-    group: redis
+    owner: {{ redis_user }}
+    group: {{ redis_group }}
     mode: 0644
     path: "{{ redis_confs.logfile }}"
   when: redis_is_installed == false and redis_confs.logfile is defined
