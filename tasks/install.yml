@@ -18,7 +18,7 @@
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
     state: directory
-    mode: 0644
+    mode: 0755
   when: redis_is_installed == false and redis_confs.logfile is defined
 
 - name: REDIS | Create log file
