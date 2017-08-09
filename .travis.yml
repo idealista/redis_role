@@ -16,10 +16,10 @@ install:
   - sudo pip install docker
 script:
   - pushd tests/single-mode
-  - sudo molecule test
+  - travis_wait 30 sudo molecule test
   - popd
   - pushd tests/cluster-mode
-  - sudo molecule test
+  - travis_wait 30 sudo molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
