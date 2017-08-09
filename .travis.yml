@@ -10,7 +10,7 @@ before_install:
   - sudo apt-get install -y software-properties-common
   - sudo apt-add-repository -y ppa:ansible/ansible
   - sudo apt-get update
-  - sudo apt-get install -y ansible pipsudo python-pip python-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
+  - sudo apt-get install -y ansible python-pip python-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
 install:
   - sudo pip install molecule
   - sudo pip install docker
