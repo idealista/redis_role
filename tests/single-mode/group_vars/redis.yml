@@ -1,0 +1,4 @@
+---
+
+redis_maxmemory: 256mb
+redis_mode: simple # custer or simple

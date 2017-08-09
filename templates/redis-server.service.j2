@@ -1,0 +1,17 @@
+[Unit]
+Description=Redis In-Memory Data Store
+After=network.target
+
+[Service]
+Type=forking
+PIDFile={{ redis_confs.pidfile }}
+
+User={{ redis_user }}
+Group={{ redis_group }}
+
+ExecStart={{ redis_conf_path }}/instance-manager.sh start
+ExecStop={{ redis_conf_path }}/instance-manager.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

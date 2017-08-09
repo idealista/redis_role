@@ -1,0 +1,14 @@
+---
+
+- name: REDIS | Redis already installed
+  shell: '[ -x "$(command -v redis-server)" ] && echo "True" || echo "False"'
+  register: redis_is_installed_command
+  changed_when: false
+
+- name: REDIS | Set installed fact
+  set_fact:
+    redis_is_installed: "{{ redis_is_installed_command.stdout }}"
+
+- name: REDIS | Set version fact
+  set_fact:
+    redis_install_new_version: "{{ redis_install_new_version }}"
