@@ -12,7 +12,7 @@ redis_service_state: started
 redis_install_new_version: False # set this to true to force an installation
 # start on boot
 redis_service_enabled: yes
-
+redis_log_path: "/var/log/redis"
 
 #### redis.conf variables ####
 
@@ -30,9 +30,9 @@ redis_confs:
   bind: "0.0.0.0"
   protected-mode: "no"
   port: "6379" # this is mandatory
-  pidfile: "/conf/redis/redis.pid"
+  pidfile: "{{ redis_conf_path }}/redis.pid"
   loglevel: "notice"
-  logfile: "/var/log/redis.log"
+  logfile: "{{ redis_log_path }}/redis.log"
   databases: "16"
   rdbcompression: "yes"
   rdbchecksum: "yes"

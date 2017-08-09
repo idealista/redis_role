@@ -12,14 +12,24 @@
     group: "{{ redis_group }}"
   when: redis_is_installed == false
 
-- name: REDIS | Create log file
+- name: REDIS | Create log directory
   file:
-    state: touch
+    path: "{{ redis_log_path }}"
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
+    state: directory
     mode: 0644
-    path: "{{ redis_confs.logfile }}"
   when: redis_is_installed == false and redis_confs.logfile is defined
+
+- name: REDIS | Create log file
+  file:
+    path: "{{ redis_confs.logfile }}"
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+    state: touch
+    mode: 0644
+  when: redis_is_installed == false and redis_confs.logfile is defined
+
 
 - name: REDIS | Remove install folder if redis is not installed
   file:
