@@ -29,13 +29,13 @@
 
 - name: REDIS | install tcl
   apt:
-    name: tcl
+    name: "{{ apt_package_tcl }}"
     update_cache: yes
   become: yes
 
 - name: REDIS | install ruby
   apt:
-    name: ruby
+    name: "{{ apt_package_ruby }}"
     update_cache: yes
   become: yes
   when: redis_mode == 'cluster'
