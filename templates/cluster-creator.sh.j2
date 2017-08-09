@@ -6,7 +6,6 @@ IPS="$IPS {{ hostvars[host]['ansible_default_ipv4']['address'] }}" # {{ host }}
 {% endfor %}
 
 PORT={{ redis_confs.port }}
-HOSTS_NAMES="{{ groups['redis'] | join(' ') }}"
 {% if redis_cluster_replicas != 0 %}
 REPLICAS="--replicas {{ redis_cluster_replicas }}"
 {% endif %}
