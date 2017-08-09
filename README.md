@@ -66,6 +66,8 @@ molecule test
 
 The default test start a cluster of three docker container. To test cluster with six nodes uncomment containers definition on test/cluster-mode/molecule.yml and set replicas to 1 on group_vars and the run `molecule test`
 
+This test have been removed from Travis CI because it takes too much time.
+
 ### Testing single mode
 
 ```sh
