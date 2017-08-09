@@ -1,5 +1,5 @@
 ![Logo](logo.gif)
-
+[![Build Status](https://travis-ci.org/idealista/redis-role.png)](https://travis-ci.org/idealista/redis-role)
 # Redis Ansible role
 
 This ansible role installs Redis server in a debian environment.

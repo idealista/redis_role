@@ -15,7 +15,10 @@ install:
   - sudo pip install molecule
   - sudo pip install docker
 script:
-  - cd tests/single-mode
+  - pushd tests/single-mode
+  - sudo molecule test
+  - popd
+  - pushd tests/cluster-mode
   - sudo molecule test
 
 #notifications:
