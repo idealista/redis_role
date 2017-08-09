@@ -1,10 +1,44 @@
 ---
 
+- name: REDIS | Create server conf path
+  file:
+    path: "{{ redis_conf_path }}"
+    state: directory
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+    mode: 0755
+
 - name: REDIS | Copy server config
   template:
     src: redis.conf.j2
     dest: "{{ redis_conf_path }}/redis.conf"
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
     mode: 0644
-    #owner: "{{ redis_user }}"
-    #group: "{{ redis_group }}"
+
+- name: REDIS | Copy manager script
+  template:
+    src: instance-manager.sh.j2
+    dest: "{{ redis_conf_path }}/instance-manager.sh"
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+    mode: 0755
+
+- name: REDIS | Copy server config
+  template:
+    src: redis-server.service.j2
+    dest: /lib/systemd/system/redis-server.service
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+    mode: 0755
   notify: restart redis
+
+- name: REDIS | Copy cluster creator
+  template:
+    src: cluster-creator.sh.j2
+    dest: "{{ redis_conf_path }}/cluster-creator.sh"
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+    mode: 0755
+  notify: restart redis
+  when: redis_mode == 'cluster'

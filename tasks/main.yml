@@ -1,5 +1,10 @@
 ---
 
+- name: REDIS | Check
+  include: check.yml
+  tags:
+    - check
+
 - name: REDIS | Install
   include: install.yml
   tags:

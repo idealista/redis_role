@@ -1,0 +1,34 @@
+#!/bin/bash
+
+PORT={{ redis_confs.port }}
+REDIS_CONF_PATH={{ redis_conf_path }}
+
+start() {
+    redis-server $REDIS_CONF_PATH/redis.conf
+    exit 0
+}
+
+
+stop() {
+    redis-cli -p $PORT shutdown nosave
+    exit 0
+}
+
+watch() {
+    clear
+    date
+    redis-cli -p $PORT cluster nodes | head -30
+    sleep 1
+}
+
+declare -A operations
+operations[start]=start
+operations[stop]=stop
+operations[watch]=watch
+
+${operations[$1]}
+
+echo "Usage: $0 [start|stop|watch]"
+echo "start       -- Launch Redis instances."
+echo "stop        -- Stop Redis instances."
+echo "watch       -- Show CLUSTER NODES output (first 30 lines) of node."

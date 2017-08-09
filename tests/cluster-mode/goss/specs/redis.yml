@@ -1,0 +1,42 @@
+file:
+  /conf/redis:
+    owner: redis
+    group: redis
+    exists: true
+    filetype: directory
+  /redis/redis.conf:
+    exists: true
+  /conf/redis/instance-manager.sh:
+    exists: true
+  /conf/redis/redis.conf:
+    exists: true
+  /conf/redis/cluster-creator.sh:
+    exists: true
+    mode: "0755"
+  /redis/src/redis-trib.rb:
+    exists: true
+  /lib/systemd/system/redis-server.service:
+    exists: true
+  /var/log/redis/redis.log:
+    owner: redis
+    group: redis
+    exists: true
+
+port:
+  tcp:6379:
+    listening: true
+
+user:
+  redis:
+    exists: true
+    groups:
+      - redis
+
+group:
+  redis:
+    exists: true
+
+service:
+  redis-server:
+    enabled: true
+    running: true

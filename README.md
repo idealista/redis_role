@@ -1,5 +1,5 @@
 ![Logo](logo.gif)
-
+[![Build Status](https://travis-ci.org/idealista/redis-role.png)](https://travis-ci.org/idealista/redis-role)
 # Redis Ansible role
 
 This ansible role installs Redis server in a debian environment.
@@ -46,7 +46,6 @@ ansible-galaxy install -p roles -r requirements.yml -f
 Use in a playbook:
 
 ```
----
 - hosts: someserver
   roles:
     - role: redis
@@ -58,7 +57,21 @@ Look to the [defaults](defaults/main.yml) properties file to see the possible co
 
 ## Testing
 
+### Testing cluster mode
+
+```sh
+cd test/cluster-mode
+molecule test
 ```
+
+The default test start a cluster of three docker container. To test cluster with six nodes uncomment containers definition on test/cluster-mode/molecule.yml and set replicas to 1 on group_vars and the run `molecule test`
+
+This test have been removed from Travis CI because it takes too much time.
+
+### Testing single mode
+
+```sh
+cd test/single-mode
 molecule test
 ```
 

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# redis doesnt accept hostname as cluster members https://github.com/antirez/redis/pull/2323
+{% for host in ansible_play_batch %}
+IPS="$IPS {{ hostvars[host]['ansible_default_ipv4']['address'] }}" # {{ host }}
+{% endfor %}
+
+PORT={{ redis_confs.port }}
+HOSTS_NAMES="{{ groups['redis'] | join(' ') }}"
+{% if redis_cluster_replicas != 0 %}
+REPLICAS="--replicas {{ redis_cluster_replicas }}"
+{% endif %}
+REDIS_PATH={{ redis_install_path }}
+
+HOSTS="";
+
+for IP in $IPS; do
+  HOSTS="$HOSTS $IP:$PORT"
+done
+
+yes "yes" | $REDIS_PATH/src/redis-trib.rb create $REPLICAS $HOSTS
