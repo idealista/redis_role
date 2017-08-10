@@ -8,9 +8,9 @@ redis_confs:
   bind: "0.0.0.0"
   protected-mode: "no"
   port: "6379" # this is mandatory
-  pidfile: "/conf/redis/redis.pid"
+  pidfile: "{{ redis_conf_path }}/redis.pid"
   loglevel: "notice"
-  logfile: "/var/log/redis.log"
+  logfile: "{{ redis_log_path }}/redis.log"
   databases: "16"
   rdbcompression: "yes"
   rdbchecksum: "yes"

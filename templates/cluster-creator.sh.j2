@@ -1,11 +1,32 @@
 #!/bin/bash
 
-# redis doesnt accept hostname as cluster members https://github.com/antirez/redis/pull/2323
-{% for host in ansible_play_batch %}
-IPS="$IPS {{ hostvars[host]['ansible_default_ipv4']['address'] }}" # {{ host }}
-{% endfor %}
-
 PORT={{ redis_confs.port }}
+HOSTS="{{ ansible_play_hosts  | join(' ') }}"
+
+COUNT_NODES=0
+COUNT_PONGS=0
+
+for HOST in $HOSTS; do
+    COUNT_NODES=$(($COUNT_NODES+1))
+    PONG=$(redis-cli -h $HOST -p $PORT PING)
+    if [ "$PONG" == "PONG" ]; then
+        COUNT_PONGS=$((COUNT_PONGS+1))
+    fi
+done
+
+if [ "$COUNT_PONGS" != "$COUNT_NODES" ]; then
+    echo "Waiting nodes..."
+    exit 0
+fi
+
+# redis doesnt accept hostname as cluster members https://github.com/antirez/redis/pull/2323
+for HOST in $HOSTS; do
+    IP=$(host $HOST | grep address  | cut -d" " -f4)
+    IPS="$IPS $IP"
+done
+
+
+
 {% if redis_cluster_replicas != 0 %}
 REPLICAS="--replicas {{ redis_cluster_replicas }}"
 {% endif %}

@@ -11,4 +11,3 @@
 - name: REDIS | Configure nodes as cluster
   command: "{{ redis_conf_path }}/cluster-creator.sh"
   when: redis_mode == 'cluster' and (redis_is_installed == False or redis_install_new_version == True)
-  run_once: True
