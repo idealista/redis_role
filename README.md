@@ -55,6 +55,8 @@ Use in a playbook:
 
 Look to the [defaults](defaults/main.yml) properties file to see the possible configuration properties.
 
+There is a playbook and example configuration on [cluster mode test](tests/cluster-mode). This role have been testing to deploy a cluster provisioning host one by one.
+
 ## Testing
 
 ### Testing cluster mode
