@@ -12,9 +12,6 @@ install:
 script:
   - pushd tests/single-mode
   - travis_wait 30 molecule test
-  - popd
-  - pushd tests/cluster-mode
-  - travis_wait 40 molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
