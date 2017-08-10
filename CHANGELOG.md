@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+## [2.0.1](https://github.com/idealista/redis-role/tree/2.0.0) (2017-08-10)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.0.0...2.0.1)
+
+###Fixed
+- *[#4](https://github.com/idealista/redis-role/issues/4) Remove redis group from `cluster-creator` script* @jdvr
+- *[#6](https://github.com/idealista/redis-role/issues/6) Check nodes status before create cluster* @jdvr
+
 ## [2.0.0](https://github.com/idealista/redis-role/tree/2.0.0) (2017-08-10)
 [Full Changelog](https://github.com/idealista/redis-role/compare/1.0.0...2.0.0)
 
