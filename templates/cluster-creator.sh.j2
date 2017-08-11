@@ -1,7 +1,6 @@
 #!/bin/bash
 
-PORT={{ redis_confs.port }}
-HOSTS="{{ ansible_play_hosts  | join(' ') }}"
+source "cluster-config.sh"
 
 COUNT_NODES=0
 COUNT_PONGS=0
@@ -25,17 +24,10 @@ for HOST in $HOSTS; do
     IPS="$IPS $IP"
 done
 
-
-
-{% if redis_cluster_replicas != 0 %}
-REPLICAS="--replicas {{ redis_cluster_replicas }}"
-{% endif %}
-REDIS_PATH={{ redis_install_path }}
-
 HOSTS="";
 
 for IP in $IPS; do
   HOSTS="$HOSTS $IP:$PORT"
 done
 
-yes "yes" | $REDIS_PATH/src/redis-trib.rb create $REPLICAS $HOSTS
+yes "yes" | redis-trib create $REPLICAS $HOSTS
