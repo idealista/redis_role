@@ -1,53 +1,60 @@
 #!/usr/bin/env bash
 
-source "cluster-config.sh"
+
+################################################################################
+#### The porpuse of this script is to be invoked from ansible task #############
+#### You shouldn't run this manually ###########################################
+#### Variables can be change to hardcode some nodes but it is not recommended ##
+################################################################################
+
+
+source "{{ redis_conf_path }}/cluster-config.sh"
 
 SLOTS=5461
 
-set-node-id () {
-    NODE_ID=$(redis-cli cluster nodes | grep myself | cut -d" " -f1)
-}
+NODE_ID=$(redis-cli cluster nodes | grep myself | cut -d" " -f1)
+NODE_SHORT_ID=$(echo $NODE_ID | cut -c1-8)
 
-set-node-ip () {
-    NODE_IP=$(redis-cli cluster nodes | grep myself | cut -d" " -f2 | cut -d"@" -f1)
-}
 
-set-other-master-id () {
-    OTHER_MASTER_ID=$(redis-cli cluster nodes | grep master | grep -v myself | head -1 | cut -d" " -f1)
-}
+OTHER_MASTER_ID=$(redis-cli cluster nodes | grep master | grep -v myself | head -1 | cut -d" " -f1)
+OTHER_MASTER_IP=$(redis-cli cluster nodes | grep master | grep -v myself | head -1 | cut -d" " -f2 | cut -d"@" -f1)
 
-set-other-master-ip () {
-    OTHER_MASTER_IP=$(redis-cli cluster nodes | grep master | grep -v myself | head -1 | cut -d" " -f2 | cut -d"@" -f1)
-}
+for HOST in $HOSTS; do
+    if [[ -z "$OTHER_MASTER_IP" && "$CURRENT_HOST" != "$HOST"  ]]; then
+        OTHER_MASTER_ID=$(redis-cli -h $HOST -p $PORT cluster nodes | grep master | grep -v myself | head -1 | cut -d" " -f1)
+        OTHER_MASTER_IP=$(redis-cli -h $HOST -p $PORT cluster nodes | grep master | grep -v myself | head -1 | cut -d" " -f2 | cut -d"@" -f1)
+    fi
+done
+
+
 
 is-master() {
     ROLE=$(redis-cli role 2> /dev/null | grep master | wc -l)
     [ "${ROLE}" == "1" ] && return 0 || return 1
 }
 
-reshard () {
-    set-node-id
-    set-node-ip
-    set-other-master-id
-    redis-trib reshard --from $NODE_ID --to $OTHER_MASTER_ID  --slots $SLOTS --yes $NODE_IP
+rebalance (){
+    redis-trib rebalance $@ --use-empty-masters $NODE_IP
 }
 
 delete-node () {
     if is-master ; then
-        reshard
+        rebalance --weight $NODE_SHORT_ID=0.0
     fi
-    set-other-master-ip
-    set-node-id
     redis-trib del-node $OTHER_MASTER_IP $NODE_ID
     rm $REDIS_CONF/$NODE_CONF_FILE
 }
 
 add-node () {
-    set-other-master-ip
-    set-node-ip
     redis-trib add-node $NODE_IP $OTHER_MASTER_IP
+    if is-master ; then
+        rebalance --weight $NODE_SHORT_ID=1.0
+    fi
 }
 
-rebalance (){
-    redis-trib rebalance --use-empty-masters $NODE_IP
-}
+declare -A commands
+
+commands[add]=add-node
+commands[delete]=delete-node
+
+${commands[$1]}

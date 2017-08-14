@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
 PORT={{ redis_confs.port }}
-CURRENT_HOST={{ inventory_hostname }}
+CURRENT_HOST="{{ inventory_hostname }}"
+NODE_IP="{{ hostvars[inventory_hostname].ansible_default_ipv4.address }}:$PORT"
 HOSTS="{{ ansible_play_hosts  | join(' ') }}"
 {% if redis_cluster_replicas != 0 %}
 REPLICAS="--replicas {{ redis_cluster_replicas }}"
 {% endif %}
 REDIS_PATH={{ redis_install_path }}
 REDIS_CONF={{ redis_conf_path }}
-NODE_CONF_FILE={{ redis_confs.cluster-config-file }}
-alias redis-trib=$REDIS_PATH/src/redis-trib.rb
+NODE_CONF_FILE="node.conf"
+
+redis-trib () {
+ $REDIS_PATH/src/redis-trib.rb $@
+}

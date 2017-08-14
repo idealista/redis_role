@@ -44,5 +44,4 @@
     - cluster-config.sh
     - cluster-creator.sh
     - upgrading-helper.sh
-  notify: restart redis
   when: redis_mode == 'cluster'
