@@ -6,3 +6,8 @@
     state: restarted
 
   when: redis_service_state != 'stopped'
+
+- name: stop redis
+  service:
+    name: redis-server
+    state: stopped
