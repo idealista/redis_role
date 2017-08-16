@@ -31,11 +31,18 @@
   when: redis_is_installed == false and redis_confs.logfile is defined
 
 
-- name: REDIS | Remove install folder if redis is not installed
+- name: REDIS | Remove instance from cluster
+  command: "{{ redis_conf_path }}/upgrading-helper.sh delete"
+  notify: stop redis
+  when:
+    - redis_install_new_version == true
+    - redis_mode == 'cluster'
+
+- name: REDIS | Remove existing install folder
   file:
     state: absent
     path: "{{ redis_install_path }}"
-  when: redis_is_installed == false
+  when: redis_is_installed == false or redis_install_new_version == true
 
 - name: REDIS | install required libs
   apt:
