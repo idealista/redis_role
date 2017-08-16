@@ -38,6 +38,14 @@
     - redis_install_new_version == true
     - redis_mode == 'cluster'
 
+- name: REDIS | Stop node
+  service:
+    name: redis-server
+    state: stopped
+  when:
+    - redis_install_new_version == true
+    - redis_mode == 'cluster'
+
 - name: REDIS | Remove existing install folder
   file:
     state: absent
