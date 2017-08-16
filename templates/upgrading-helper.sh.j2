@@ -12,7 +12,7 @@ source "{{ redis_conf_path }}/cluster-config.sh"
 
 SLOTS=5461
 
-NODE_ID=$(redis-cli cluster nodes | grep myself | cut -d" " -f1)
+NODE_ID=$(redis-cli -p $PORT cluster nodes | grep myself | cut -d" " -f1)
 NODE_SHORT_ID=$(echo $NODE_ID | cut -c1-8)
 
 
@@ -26,11 +26,23 @@ for HOST in $HOSTS; do
     fi
 done
 
+slave-ip() {
+    #slave0:ip=127.0.0.1,port=7003,state=online,offset=1695,lag=1
+    return $(redis-cli -p $PORT info | grep slave0 | cut -d: -f2  | cut -d= -f2 | cut -d, -f1)
+}
 
+failover() {
+    redis-cli -h $1 -p $PORT cluster failover
+}
 
 is-master() {
     ROLE=$(redis-cli role 2> /dev/null | grep master | wc -l)
     [ "${ROLE}" == "1" ] && return 0 || return 1
+}
+
+has-slave() {
+    NO_SLAVE_LINES=$(redis-cli -p $PORT info | grep connected_slaves:0 | wc -l)
+    [ "${NO_SLAVE_LINES}" == "1" ] && return 1 || return 0
 }
 
 rebalance (){
@@ -39,17 +51,25 @@ rebalance (){
 
 delete-node () {
     if is-master ; then
-        rebalance --weight $NODE_SHORT_ID=0.0
+        if has-slave ; then
+            failover slave-ip
+        else
+            rebalance --weight $NODE_SHORT_ID=0.0
+            redis-trib del-node $OTHER_MASTER_IP $NODE_ID
+            rm $REDIS_CONF/$NODE_CONF_FILE
+        fi
     fi
-    redis-trib del-node $OTHER_MASTER_IP $NODE_ID
-    rm $REDIS_CONF/$NODE_CONF_FILE
+    exit 0
 }
 
 add-node () {
-    redis-trib add-node $NODE_IP $OTHER_MASTER_IP
     if is-master ; then
+        redis-trib add-node $NODE_IP $OTHER_MASTER_IP
         rebalance --weight $NODE_SHORT_ID=1.0
+    else
+        redis-trib add-node --slave $NODE_IP $OTHER_MASTER_IP
     fi
+    exit 0
 }
 
 declare -A commands
