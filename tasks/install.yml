@@ -33,7 +33,6 @@
 
 - name: REDIS | Remove instance from cluster
   command: "{{ redis_conf_path }}/upgrading-helper.sh delete"
-  notify: stop redis
   when:
     - redis_install_new_version == true
     - redis_mode == 'cluster'
