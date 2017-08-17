@@ -46,7 +46,7 @@ has-slave() {
 }
 
 rebalance (){
-    redis-trib rebalance $@ --use-empty-masters $NODE_IP
+    redis-trib rebalance $@ --use-empty-masters $OTHER_MASTER_IP
 }
 
 delete-node () {
@@ -63,11 +63,15 @@ delete-node () {
 }
 
 add-node () {
+    echo "Other master node ip: $OTHER_MASTER_IP"
     if is-master ; then
         redis-trib add-node $NODE_IP $OTHER_MASTER_IP
+        sleep 30 #this avoid cluster meet latency
+        redis-trib check $OTHER_MASTER_IP # this ensure every node has meet each other
         rebalance --weight $NODE_SHORT_ID=1.0
     else
         redis-trib add-node --slave $NODE_IP $OTHER_MASTER_IP
+        sleep 30
     fi
     exit 0
 }
