@@ -35,10 +35,13 @@
 
 - name: REDIS | Copy cluster creator
   template:
-    src: cluster-creator.sh.j2
-    dest: "{{ redis_conf_path }}/cluster-creator.sh"
+    src: "{{ item }}.j2"
+    dest: "{{ redis_conf_path }}/{{ item }}"
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
     mode: 0755
-  notify: restart redis
+  with_items:
+    - cluster-config.sh
+    - cluster-creator.sh
+    - upgrading-helper.sh
   when: redis_mode == 'cluster'
