@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+## [2.1.1](https://github.com/idealista/redis-role/tree/2.1.1) (2017-08-21)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.0...2.1.1)
+
+### Fixed
+- *[#16](https://github.com/idealista/redis-role/issues/16) The `redis.conf` file is generated with bad indentation* @jdvr
+- *[#17](https://github.com/idealista/redis-role/issues/17) Create a configurable var for pid file path* @jdvr
+
 ## [2.1.0](https://github.com/idealista/redis-role/tree/2.1.0) (2017-08-17)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.0.1...2.1.0)
 

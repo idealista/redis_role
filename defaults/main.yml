@@ -2,6 +2,7 @@
 redis_user: redis
 redis_group: redis
 
+redis_pid_path: "/var/run/redis"
 redis_install_path: "/redis" #redis source will be here
 redis_conf_path: "/conf/redis" #redis configuration and running instance data will be here
 redis_mode: simple # custer or simple
@@ -30,7 +31,7 @@ redis_confs:
   bind: "0.0.0.0"
   protected-mode: "no"
   port: "6379" # this is mandatory
-  pidfile: "{{ redis_conf_path }}/redis.pid"
+  pidfile: "{{ redis_pid_path }}/redis.pid"
   loglevel: "notice"
   logfile: "{{ redis_log_path }}/redis.log"
   databases: "16"
