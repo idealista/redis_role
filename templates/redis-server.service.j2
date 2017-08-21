@@ -9,7 +9,7 @@ PIDFile={{ redis_confs.pidfile }}
 User={{ redis_user }}
 Group={{ redis_group }}
 
-ExecStartPre=/bin/chown {{ redis_user }}:{{ redis_group }} {{ redis_pid_path }}
+ExecStartPre=/bin/chown {{ redis_user }}:{{ redis_group }} {{ redis_confs.pidfile }}
 
 ExecStart={{ redis_conf_path }}/instance-manager.sh start
 ExecStop={{ redis_conf_path }}/instance-manager.sh
