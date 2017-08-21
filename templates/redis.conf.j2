@@ -3,16 +3,15 @@ include {{ redis_install_path }}/redis.conf
 {% endif %}
 
 
-
 {% if redis_confs %}
-    {% for key,value in redis_confs.iteritems() %}
-        {{ key }} {{ value }}
-    {% endfor %}
+{% for key,value in redis_confs.iteritems() %}
+{{ key }} {{ value }}
+{% endfor %}
 {% endif %}
 
 {% if redis_save %}
 {% for save in redis_save %}
-    save {{ save }}
+save {{ save }}
 {% endfor %}
 {% endif %}
 
