@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+## [2.1.2](https://github.com/idealista/redis-role/tree/2.1.2) (2017-08-24)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.1...2.1.2)
+
+### Added
+- *[#18](https://github.com/idealista/redis-role/issues/18) Add task to follow redis setup hints* @jdvr
+
 ## [2.1.1](https://github.com/idealista/redis-role/tree/2.1.1) (2017-08-21)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.0...2.1.1)
 
