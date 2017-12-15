@@ -1,23 +1,24 @@
+---
 #### installation variables ####
 redis_user: redis
 redis_group: redis
 
 redis_pid_path: "/var/run/redis"
-redis_install_path: "/redis" #redis source will be here
-redis_conf_path: "/conf/redis" #redis configuration and running instance data will be here
-redis_mode: simple # custer or simple
+redis_install_path: "/redis"  # redis source will be here
+redis_conf_path: "/conf/redis"  # redis configuration and running instance data will be here
+redis_mode: simple  # custer or simple
 redis_version: 4.0.1
 # current state: started, stopped
 redis_service_state: started
-#redis_cluster_replicas: 1
-redis_install_new_version: False # set this to true to force an installation
+# redis_cluster_replicas: 1
+redis_install_new_version: False  # set this to true to force an installation
 # start on boot
 redis_service_enabled: yes
 redis_log_path: "/var/log/redis"
 
 #### redis.conf variables ####
 
-#this include default conf file
+# this include default conf file
 include_redis_default_conf: True
 
 redis_save:
@@ -25,12 +26,12 @@ redis_save:
   - 300 10
   - 60 10000
 
-#you can include here redis.conf's vars
-#use quotation mark to avoid python value override
+# you can include here redis.conf's vars
+# use quotation mark to avoid python value override
 redis_confs:
   bind: "0.0.0.0"
   protected-mode: "no"
-  port: "6379" # this is mandatory
+  port: "6379"  # this is mandatory
   pidfile: "{{ redis_pid_path }}/redis.pid"
   loglevel: "notice"
   logfile: "{{ redis_log_path }}/redis.log"
@@ -41,11 +42,11 @@ redis_confs:
   slave-serve-stale-data: "yes"
   slave-read-only: "yes"
   stop-writes-on-bgsave-error: "yes"
-  #include to start node as cluster member
+  # include to start node as cluster member
   # cluster-node-timeout: "2000"
   # cluster-enabled: "yes"
   # cluster-config-file: node.conf
   appendonly: "yes"
   appendfilename: "appendonly-db.aof"
   dbfilename: "dump.rdb"
-  daemonize: "yes" # mandatory for cluster node
+  daemonize: "yes"  # mandatory for cluster node
