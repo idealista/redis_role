@@ -10,8 +10,8 @@ install:
   - pip install molecule==1.25.0
   - pip install docker
 script:
-  - systemctl --user --global enable gpg-agent.socket
-  - systemctl --user --global enable gpg-agent-ssh.socket
+  - update-rc.d gpg-agent.socket enable
+  - update-rc.d gpg-agent-ssh.socket  enable
   - pushd tests/single-mode
   - travis_wait 30 molecule test
 
