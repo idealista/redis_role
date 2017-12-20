@@ -26,9 +26,9 @@ for HOST in $HOSTS; do
     fi
 done
 
-slave-ip() {
+find-slave-ip() {
     #slave0:ip=127.0.0.1,port=7003,state=online,offset=1695,lag=1
-    return $(redis-cli -p $PORT info | grep slave0 | cut -d: -f2  | cut -d= -f2 | cut -d, -f1)
+    FIRST_SLAVE_IP=$(redis-cli -p $PORT info | grep slave0 | cut -d: -f2  | cut -d= -f2 | cut -d, -f1)
 }
 
 failover() {
@@ -52,7 +52,8 @@ rebalance (){
 delete-node () {
     if is-master ; then
         if has-slave ; then
-            failover slave-ip
+            find-slave-ip
+            failover $FIRST_SLAVE_IP
         else
             rebalance --weight $NODE_SHORT_ID=0.0
             redis-trib del-node $OTHER_MASTER_IP $NODE_ID
