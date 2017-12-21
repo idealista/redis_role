@@ -1,5 +1,0 @@
----
-
-- hosts: redis
-  roles:
-    - redis-role

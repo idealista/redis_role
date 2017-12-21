@@ -108,4 +108,3 @@
     state: present
   become: yes
   when: redis_mode == 'cluster'
-

@@ -1,0 +1,52 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: vito.cont
+    groups:
+      - redis
+    image: geerlingguy/docker-debian9-ansible:latest
+    privileged: True
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    command: '/lib/systemd/systemd'
+
+  - name: sony.cont
+    groups:
+      - redis
+    image: geerlingguy/docker-debian9-ansible:latest
+    privileged: True
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    command: '/lib/systemd/systemd'
+
+  - name: michael.cont
+    groups:
+      - redis
+    image: geerlingguy/docker-debian9-ansible:latest
+    privileged: True
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    command: '/lib/systemd/systemd'
+lint:
+  name: yamllint
+  options:
+    config-file: molecule/.yamllint
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: cluster
+verifier:
+  name: goss
+  lint:
+    name: 'None'

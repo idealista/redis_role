@@ -1,0 +1,4 @@
+molecule==2.5.0
+ansible==2.3.1.0
+docker
+docker-py
