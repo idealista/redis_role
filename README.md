@@ -62,8 +62,9 @@ There is a playbook and example configuration on [cluster mode test](molecule/cl
 
 ```sh
 pipenv install
-
 ```
+
+For more information read the [pipenv docs](https://docs.pipenv.org/).
 
 ### Testing cluster mode
 
