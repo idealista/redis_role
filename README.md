@@ -31,8 +31,7 @@ For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant
 Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
-- src: http://github.com/idealista/redis-role.git
-  scm: git
+- src: idealista.redis-role
   version: 1.0.0
   name: redis
 ```
@@ -48,38 +47,45 @@ Use in a playbook:
 ```
 - hosts: someserver
   roles:
-    - role: redis
+    - redis
 ```
 
 ## Usage
 
 Look to the [defaults](defaults/main.yml) properties file to see the possible configuration properties.
 
-There is a playbook and example configuration on [cluster mode test](tests/cluster-mode). This role have been testing to deploy a cluster provisioning host one by one.
+There is a playbook and example configuration on [cluster mode test](molecule/cluster/). This role have been testing to deploy a cluster provisioning host one by one (`serial: 1`).
 
 ## Testing
+
+### Install dependencies
+
+```sh
+pipenv install
+
+```
 
 ### Testing cluster mode
 
 ```sh
-cd test/cluster-mode
-molecule test
+pipenv shell
+molecule test -s cluster
 ```
 
-The default test start a cluster of three docker container. To test cluster with six nodes uncomment containers definition on test/cluster-mode/molecule.yml and set replicas to 1 on group_vars and the run `molecule test`
-
-This test have been removed from Travis CI because it takes too much time.
+_NOTE: This test have been removed from Travis CI because it takes too much time._
 
 ### Testing single mode
 
 ```sh
-cd test/single-mode
-molecule test
+pipenv shell
+molecule test -s single
 ```
 
 ## Built With
 
 ![Ansible](https://img.shields.io/badge/ansible-2.2.1.0-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-2.5.0-green.svg)
+![Goss](https://img.shields.io/badge/goss-0.3.5-green.svg)
 
 ## Versioning
 
