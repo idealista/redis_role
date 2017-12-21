@@ -6,7 +6,7 @@ redis_group: redis
 redis_pid_path: "/var/run/redis"
 redis_install_path: "/redis"  # redis source will be here
 redis_conf_path: "/conf/redis"  # redis configuration and running instance data will be here
-redis_mode: simple  # custer or simple
+redis_mode: simple  # cluster or simple
 redis_version: 4.0.1
 # current state: started, stopped
 redis_service_state: started
