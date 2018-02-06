@@ -28,7 +28,7 @@ fi
 
 # redis doesnt accept hostname as cluster members https://github.com/antirez/redis/pull/2323
 for HOST in $HOSTS; do
-    IP=$(host $HOST | grep address  | cut -d" " -f4)
+    IP=$(getent ahostsv4 $HOST | head -1 | awk '{print $1}')
     IPS="$IPS $IP"
 done
 

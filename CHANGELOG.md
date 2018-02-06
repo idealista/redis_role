@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Fixed
 - *[#30](https://github.com/idealista/redis-role/issues/30) Read cluster config file name from configuration* @lihiwish
 
+### Fixed
+- *[#32](https://github.com/idealista/redis-role/issues/32) Reading the cluster host IP does not work well when the cluster have several IPs* @lihiwish
+
 ## [2.1.3](https://github.com/idealista/redis-role/tree/2.1.3) (2017-12-21)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.2...2.1.3)
 
