@@ -9,7 +9,7 @@ REPLICAS="--replicas {{ redis_cluster_replicas }}"
 {% endif %}
 REDIS_PATH={{ redis_install_path }}
 REDIS_CONF={{ redis_conf_path }}
-NODE_CONF_FILE={{ redis_confs.cluster-config-file }}
+NODE_CONF_FILE={{ redis_confs['cluster-config-file'] }}
 
 redis-trib () {
  $REDIS_PATH/src/redis-trib.rb $@
