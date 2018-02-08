@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+### Added
+- *[#36](https://github.com/idealista/redis-role/issues/36) Prevent changing transparent_hugepage for container installations* @lihiwish
+
 ### Fixed
 - *[#38](https://github.com/idealista/redis-role/issues/38) Param redis-confs.cluster-config-file is not accessed correctly* @lihiwish
 

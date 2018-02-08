@@ -65,3 +65,4 @@
 - name: REDIS | Set transparent hugepage
   shell: 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
   changed_when: false
+  when: disable_transparent_hugepage == true
