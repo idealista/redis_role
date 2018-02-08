@@ -15,6 +15,7 @@ redis_install_new_version: False  # set this to true to force an installation
 # start on boot
 redis_service_enabled: yes
 redis_log_path: "/var/log/redis"
+disable_transparent_hugepage: true  # set this to false when installing the role inside container
 
 #### redis.conf variables ####
 
