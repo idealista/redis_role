@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+### Fixed
+- *[#41](https://github.com/idealista/redis-role/issues/41) Add RuntimeDirectory and fix ExecStop in redis-server.service* @jnogol
+
 ## [2.1.5](https://github.com/idealista/redis-role/tree/2.1.5) (2018-02-08)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.4...2.1.5)
 
