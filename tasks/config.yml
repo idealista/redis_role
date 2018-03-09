@@ -8,14 +8,6 @@
     group: "{{ redis_group }}"
     mode: 0755
 
-- name: REDIS | Create pid path
-  file:
-    path: "{{ redis_pid_path }}"
-    state: directory
-    owner: "{{ redis_user }}"
-    group: "{{ redis_group }}"
-    mode: 0755
-
 - name: REDIS | Copy server config
   template:
     src: "{{ redis_server_conf_template_path }}"

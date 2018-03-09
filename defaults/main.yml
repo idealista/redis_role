@@ -3,7 +3,6 @@
 redis_user: redis
 redis_group: redis
 
-redis_pid_path: "/var/run/redis"
 redis_install_path: "/redis"  # redis source will be here
 redis_conf_path: "/conf/redis"  # redis configuration and running instance data will be here
 redis_mode: simple  # cluster or simple
@@ -37,7 +36,7 @@ redis_confs:
   bind: "0.0.0.0"
   protected-mode: "no"
   port: "6379"  # this is mandatory
-  pidfile: "{{ redis_pid_path }}/redis.pid"
+  pidfile: "/var/run/redis/redis.pid"
   loglevel: "notice"
   logfile: "{{ redis_log_path }}/redis.log"
   databases: "16"
