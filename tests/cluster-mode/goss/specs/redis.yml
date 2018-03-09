@@ -21,6 +21,10 @@ file:
     owner: redis
     group: redis
     exists: true
+  /var/run/redis/redis.pid:
+    owner: redis
+    group: redis
+    exists: true
 
 port:
   tcp:6379:
