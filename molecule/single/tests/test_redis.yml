@@ -21,6 +21,10 @@ file:
     owner: redis
     group: redis
     exists: true
+  {{ redis_confs.pidfile }}:
+    owner: redis
+    group: redis
+    exists: true
 
 port:
   tcp:{{ redis_confs.port }}:
