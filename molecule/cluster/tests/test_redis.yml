@@ -3,8 +3,8 @@
 ---
 file:
   {{ redis_conf_path }}:
-    owner: redis
-    group: redis
+    owner: {{ redis_user }}
+    group: {{ redis_group }}
     exists: true
     filetype: directory
   {{ redis_install_path }}/redis.conf:
@@ -18,12 +18,12 @@ file:
   /lib/systemd/system/redis-server.service:
     exists: true
   {{ redis_log_path }}/redis.log:
-    owner: redis
-    group: redis
+    owner: {{ redis_user }}
+    group: {{ redis_group }}
     exists: true
   {{ redis_confs.pidfile }}:
-    owner: redis
-    group: redis
+    owner: {{ redis_user }}
+    group: {{ redis_group }}
     exists: true
 
 port:
