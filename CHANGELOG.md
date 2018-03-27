@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+### Changed
+- *[#45](https://github.com/idealista/redis-role/pull/45) Some tests improvements* @jdvr
+
 ## [2.1.6](https://github.com/idealista/redis-role/tree/2.1.6) (2018-03-09)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.5...2.1.6)
 ### Fixed
@@ -65,7 +68,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ### Added
 - *[#1](https://github.com/idealista/redis-role/issues/1) Redis cluster (install nodes and configure)* @jdvr
-
 
 ## [1.0.0](https://github.com/idealista/redis-role/tree/1.0.0) (2017-04-20)
 
