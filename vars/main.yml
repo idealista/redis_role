@@ -1,6 +1,11 @@
 ---
-redis_required_libs: ["tcl", "host"]
-redis_required_libs_cluster: ["ruby"]
+redis_required_libs:
+  - tcl
+  - host
+  - build-essential
+
+redis_required_libs_cluster:
+  - ruby
 
 redis_source_url: http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
 apt_package_tcl: tcl
