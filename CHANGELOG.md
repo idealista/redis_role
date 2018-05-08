@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+## [2.1.8](https://github.com/idealista/redis-role/tree/2.1.8) (2018-05-08)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.7...2.1.8)
+### Fixed
+- *[#51](https://github.com/idealista/redis-role/issues/51) Adding build-essential as required library* @dortegau
+
 ## [2.1.7](https://github.com/idealista/redis-role/tree/2.1.7) (2018-04-26)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.6...2.1.7)
 ### Fixed
