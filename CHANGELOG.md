@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+## [2.1.9](https://github.com/idealista/redis-role/tree/2.1.9) (2018-05-09)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.8...2.1.9)
+### Fixed
+- *[#54](https://github.com/idealista/redis-role/issues/54) Enabling support for execute this role under Python 3.x* @dortegau
+
 ## [2.1.8](https://github.com/idealista/redis-role/tree/2.1.8) (2018-05-08)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.7...2.1.8)
 ### Fixed
