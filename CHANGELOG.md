@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Fixed
 - *[#54](https://github.com/idealista/redis-role/issues/54) Enabling support for execute this role under Python 3.x* @dortegau
 
+## [2.1.8](https://github.com/idealista/redis-role/tree/2.1.8) (2018-05-08)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.7...2.1.8)
 ### Fixed
 - *[#51](https://github.com/idealista/redis-role/issues/51) Adding build-essential as required library* @dortegau
 
