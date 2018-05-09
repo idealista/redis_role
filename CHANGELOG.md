@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
+
+## [2.1.9](https://github.com/idealista/redis-role/tree/2.1.9) (2018-05-09)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.8...2.1.9)
 ### Fixed
 - *[#54](https://github.com/idealista/redis-role/issues/54) Enabling support for execute this role under Python 3.x* @dortegau
 
