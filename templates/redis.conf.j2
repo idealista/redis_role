@@ -4,7 +4,7 @@ include {{ redis_install_path }}/redis.conf
 
 
 {% if redis_confs %}
-{% for key,value in redis_confs.iteritems() %}
+{% for key,value in redis_confs.items() %}
 {{ key }} {{ value }}
 {% endfor %}
 {% endif %}
@@ -17,4 +17,3 @@ save {{ save }}
 
 
 dir {{ redis_conf_path }}
-
