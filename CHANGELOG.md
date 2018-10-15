@@ -4,6 +4,26 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+## [2.1.9](https://github.com/idealista/redis-role/tree/2.1.9) (2018-05-09)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.8...2.1.9)
+### Fixed
+- *[#54](https://github.com/idealista/redis-role/issues/54) Enabling support for execute this role under Python 3.x* @dortegau
+
+## [2.1.8](https://github.com/idealista/redis-role/tree/2.1.8) (2018-05-08)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.7...2.1.8)
+### Fixed
+- *[#51](https://github.com/idealista/redis-role/issues/51) Adding build-essential as required library* @dortegau
+
+## [2.1.7](https://github.com/idealista/redis-role/tree/2.1.7) (2018-04-26)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.6...2.1.7)
+### Fixed
+- *[#47](https://github.com/idealista/redis-role/issues/47) When running the role on "localhost" redis cluster is trying to configure 127.0.0.1 instead of the actual IP* @lihiwish
+
+### Changed
+- *[#45](https://github.com/idealista/redis-role/pull/45) Some tests improvements* @jdvr
+
+## [2.1.6](https://github.com/idealista/redis-role/tree/2.1.6) (2018-03-09)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.5...2.1.6)
 ### Fixed
 - *[#41](https://github.com/idealista/redis-role/issues/41) Add RuntimeDirectory and fix ExecStop in redis-server.service* @jnogol
 - *[#43](https://github.com/idealista/redis-role/issues/43) Playbooks can provide config templates* @jnogol
@@ -64,7 +84,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ### Added
 - *[#1](https://github.com/idealista/redis-role/issues/1) Redis cluster (install nodes and configure)* @jdvr
-
 
 ## [1.0.0](https://github.com/idealista/redis-role/tree/1.0.0) (2017-04-20)
 
