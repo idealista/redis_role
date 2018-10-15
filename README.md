@@ -21,7 +21,7 @@ These instructions will get you a copy of the role for your ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.2.1.0 version installed.
+Ansible 2.4.0.0 version installed.
 Inventory destination should be a Debian environment.
 
 For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant](https://www.vagrantup.com/) as driver (with [landrush](https://github.com/vagrant-landrush/landrush) plugin) and [VirtualBox](https://www.virtualbox.org/) as provider.
@@ -84,8 +84,8 @@ molecule test -s single
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.2.1.0-green.svg)
-![Molecule](https://img.shields.io/badge/molecule-2.5.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.4.0.0-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-2.18.1-green.svg)
 ![Goss](https://img.shields.io/badge/goss-0.3.5-green.svg)
 
 ## Versioning
@@ -102,7 +102,7 @@ See also the list of [contributors](https://github.com/idealista/redis-role/cont
 
 ## License
 
-![Apache 2.0 Licence](https://img.shields.io/hexpm/l/plug.svg)
+![Apache 2.0 License](https://img.shields.io/hexpm/l/plug.svg)
 
 This project is licensed under the [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license - see the [LICENSE](LICENSE) file for details.
 
