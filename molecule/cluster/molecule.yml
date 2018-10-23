@@ -49,4 +49,5 @@ scenario:
 verifier:
   name: goss
   lint:
-    name: 'None'
+    name: yamllint
+    enabled: False

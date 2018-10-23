@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+## [2.2.0](https://github.com/idealista/redis-role/tree/2.2.0) (2018-10-23)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.9...2.2.0)
+### Added
+- *[#43](https://github.com/idealista/redis-role/issues/43) Playbooks can provide config templates* @jnogol
+### Fixed
+- *Fix travis tests* @jnogol
+
 ## [2.1.9](https://github.com/idealista/redis-role/tree/2.1.9) (2018-05-09)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.8...2.1.9)
 ### Fixed

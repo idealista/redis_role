@@ -16,6 +16,10 @@ redis_service_enabled: yes
 redis_log_path: "/var/log/redis"
 disable_transparent_hugepage: true  # set this to false when installing the role inside container
 
+redis_server_conf_template_path: redis.conf.j2
+redis_manager_template_path: instance-manager.sh.j2
+redis_service_template_path: redis-server.service.j2
+
 #### redis.conf variables ####
 
 # this include default conf file
