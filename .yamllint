@@ -1,7 +1,7 @@
 extends: default
 
 ignore: |
-  .tratrvis.yml
+  .travis.yml
   /molecule/
   /tests/
 
