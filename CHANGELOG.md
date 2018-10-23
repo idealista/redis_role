@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
+
+## [2.2.0](https://github.com/idealista/redis-role/tree/2.2.0) (2018-10-23)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.1.9...2.2.0)
+### Added
+- *[#43](https://github.com/idealista/redis-role/issues/43) Playbooks can provide config templates* @jnogol
 ### Fixed
 - *Fix travis tests* @jnogol
 
@@ -28,7 +33,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.5...2.1.6)
 ### Fixed
 - *[#41](https://github.com/idealista/redis-role/issues/41) Add RuntimeDirectory and fix ExecStop in redis-server.service* @jnogol
-- *[#43](https://github.com/idealista/redis-role/issues/43) Playbooks can provide config templates* @jnogol
 
 ## [2.1.5](https://github.com/idealista/redis-role/tree/2.1.5) (2018-02-08)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.4...2.1.5)
