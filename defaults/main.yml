@@ -1,29 +1,37 @@
 ---
-#### installation variables ####
+
+## General
+redis_version: 4.0.1
+
+redis_mode: single  # cluster or single
+redis_disable_transparent_hugepage: true  # set this to false when installing the role inside container
+
+## Service options
+
+# Owner
 redis_user: redis
 redis_group: redis
 
+# Files & Paths
 redis_install_path: "/redis"  # redis source will be here
 redis_conf_path: "/conf/redis"  # redis configuration and running instance data will be here
-redis_mode: simple  # cluster or simple
-redis_version: 4.0.1
-# current state: started, stopped
-redis_service_state: started
-# redis_cluster_replicas: 1
-redis_install_new_version: False  # set this to true to force an installation
-# start on boot
-redis_service_enabled: yes
-redis_log_path: "/var/log/redis"
-disable_transparent_hugepage: true  # set this to false when installing the role inside container
-
 redis_server_conf_template_path: redis.conf.j2
 redis_manager_template_path: instance-manager.sh.j2
 redis_service_template_path: redis-server.service.j2
+redis_log_path: "/var/log/redis"
+
+# current state: started, stopped
+redis_service_state: started
+# redis_cluster_replicas: 1
+redis_install_new_version: false  # set this to true to force an installation
+
+# start on boot
+redis_service_enabled: true
 
 #### redis.conf variables ####
 
 # this include default conf file
-include_redis_default_conf: True
+include_redis_default_conf: true
 
 redis_save:
   - 900 1

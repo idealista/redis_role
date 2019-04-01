@@ -4,13 +4,13 @@
   group:
     name: "{{ redis_group }}"
     state: present
-  when: redis_is_installed == false
+  when: not redis_is_installed
 
 - name: REDIS | Create redis user
   user:
     name: "{{ redis_user }}"
     group: "{{ redis_group }}"
-  when: redis_is_installed == false
+  when: not redis_is_installed
 
 - name: REDIS | Create log directory
   file:
@@ -19,7 +19,7 @@
     group: "{{ redis_group }}"
     state: directory
     mode: 0755
-  when: redis_is_installed == false and redis_confs.logfile is defined
+  when: not redis_is_installed and redis_confs.logfile is defined
 
 - name: REDIS | Create log file
   file:
@@ -28,13 +28,12 @@
     group: "{{ redis_group }}"
     state: touch
     mode: 0644
-  when: redis_is_installed == false and redis_confs.logfile is defined
-
+  when: not redis_is_installed and redis_confs.logfile is defined
 
 - name: REDIS | Remove instance from cluster
   command: "{{ redis_conf_path }}/upgrading-helper.sh delete"
   when:
-    - redis_install_new_version == true
+    - redis_install_new_version
     - redis_mode == 'cluster'
 
 - name: REDIS | Stop node
@@ -42,28 +41,24 @@
     name: redis-server
     state: stopped
   when:
-    - redis_install_new_version == true
+    - redis_install_new_version
     - redis_mode == 'cluster'
 
 - name: REDIS | Remove existing install folder
   file:
     state: absent
     path: "{{ redis_install_path }}"
-  when: redis_is_installed == false or redis_install_new_version == true
+  when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | install required libs
   apt:
-    name: "{{ item }}"
+    name: "{{ redis_required_libs }}"
     update_cache: yes
-  with_items: "{{ redis_required_libs }}"
-  become: yes
 
 - name: REDIS | install cluster required libs
   apt:
-    name: "{{ item }}"
+    name: "{{ redis_required_libs_cluster }}"
     update_cache: yes
-  with_items: "{{ redis_required_libs_cluster }}"
-  become: yes
   when: redis_mode == 'cluster'
 
 - name: REDIS | Download sources
@@ -71,36 +66,36 @@
     url: "{{ redis_source_url }}"
     dest: /tmp
     validate_certs: no
-  when: redis_is_installed == false or redis_install_new_version == true
+  when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Extract sources
   unarchive:
     copy: no
     src: /tmp/redis-{{ redis_version }}.tar.gz
     dest: /tmp
-  when: redis_is_installed == False or redis_install_new_version == True
+  when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Move sources to install path
   command: "mv /tmp/redis-{{ redis_version }}/ {{ redis_install_path }}"
-  when: redis_is_installed == False or redis_install_new_version == True
+  when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Make
   make:
     chdir: "{{ redis_install_path }}"
-  when: redis_is_installed == False or redis_install_new_version == True
+  when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Make test
   make:
     chdir: "{{ redis_install_path }}"
     target: test
-  when: redis_is_installed == False or redis_install_new_version == True
+  when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Make install
   make:
     chdir: "{{ redis_install_path }}"
     target: install
   become: yes
-  when: redis_is_installed == False or redis_install_new_version == True
+  when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | install redis gem
   gem:

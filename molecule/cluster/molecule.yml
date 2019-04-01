@@ -36,10 +36,11 @@ platforms:
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     command: '/lib/systemd/systemd'
+
 lint:
   name: yamllint
   options:
-    config-file: molecule/.yamllint
+    config-file: .yamllint
 provisioner:
   name: ansible
   lint:

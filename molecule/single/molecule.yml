@@ -6,9 +6,9 @@ driver:
 lint:
   name: yamllint
   options:
-    config-file: molecule/.yamllint
+    config-file: .yamllint
 platforms:
-  - name: redis.cont
+  - name: redis
     groups:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
