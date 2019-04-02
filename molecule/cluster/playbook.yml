@@ -1,4 +1,8 @@
 ---
+- name: Gather facts from all containers
+  hosts: all
+  tasks: []
+
 - name: Converge
   hosts: all
   serial: 1

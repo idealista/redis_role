@@ -4,10 +4,11 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: vito.cont
+  - name: vito
     groups:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
+    hostname: vito
     privileged: True
     capabilities:
       - SYS_ADMIN
@@ -15,10 +16,11 @@ platforms:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     command: '/lib/systemd/systemd'
 
-  - name: sony.cont
+  - name: sony
     groups:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
+    hostname: sony
     privileged: True
     capabilities:
       - SYS_ADMIN
@@ -26,10 +28,11 @@ platforms:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     command: '/lib/systemd/systemd'
 
-  - name: michael.cont
+  - name: michael
     groups:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
+    hostname: michael
     privileged: True
     capabilities:
       - SYS_ADMIN
