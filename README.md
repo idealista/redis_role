@@ -1,8 +1,9 @@
 ![Logo](logo.gif)
 [![Build Status](https://travis-ci.org/idealista/redis-role.png)](https://travis-ci.org/idealista/redis-role)
+
 # Redis Ansible role
 
-This ansible role installs Redis server in a debian environment.
+This Ansible role installs Redis server in a Debian environment.
 
 - [Getting Started](#getting-started)
 	- [Prerequisities](#prerequisities)
@@ -17,14 +18,14 @@ This ansible role installs Redis server in a debian environment.
 
 ## Getting Started
 
-These instructions will get you a copy of the role for your ansible playbook. Once launched, it will install a [Redis](https://redis.io/) server.
+These instructions will get you a copy of the role for your Ansible playbook. Once launched, it will install a [Redis](https://redis.io/) server.
 
 ### Prerequisities
 
 Ansible 2.4.5.0 version installed.
 Inventory destination should be a Debian environment.
 
-For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant](https://www.vagrantup.com/) as driver (with [landrush](https://github.com/vagrant-landrush/landrush) plugin) and [VirtualBox](https://www.virtualbox.org/) as provider.
+For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver.
 
 ### Installing
 
