@@ -1,0 +1,14 @@
+---
+
+#  https://redis.io/topics/admin Redis setup hint
+
+- name: REDIS | Set overcommit on sysctl
+  sysctl:
+    name: vm.overcommit_memory
+    value: 1
+    state: present
+
+- name: REDIS | Set transparent hugepage
+  shell: 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
+  changed_when: false
+  when: redis_disable_transparent_hugepage

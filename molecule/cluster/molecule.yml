@@ -9,19 +9,19 @@ platforms:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
     hostname: vito
-    privileged: True
+    privileged: False
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     command: '/lib/systemd/systemd'
 
-  - name: sony
+  - name: sonny
     groups:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
-    hostname: sony
-    privileged: True
+    hostname: sonny
+    privileged: False
     capabilities:
       - SYS_ADMIN
     volumes:
@@ -33,7 +33,7 @@ platforms:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
     hostname: michael
-    privileged: True
+    privileged: False
     capabilities:
       - SYS_ADMIN
     volumes:
@@ -48,6 +48,8 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  options:
+    skip-tags: os-configure
 scenario:
   name: cluster
 verifier:

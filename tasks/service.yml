@@ -6,17 +6,17 @@
     state: "{{ redis_service_state }}"
     enabled: "{{ redis_service_enabled }}"
     daemon_reload: yes
-  # when: not redis_is_installed or redis_install_new_version
+  when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Configure nodes as cluster
   run_once: true
   command: "{{ redis_conf_path }}/cluster-creator.sh"
-  # when:
-  #   - redis_mode == 'cluster'
-  #   - not redis_is_installed
+  when:
+    - redis_mode == 'cluster'
+    - not redis_is_installed
 
 - name: REDIS | Add instance to cluster
   command: "{{ redis_conf_path }}/upgrading-helper.sh add"
-  # when:
-  #   - redis_install_new_version
-  #   - redis_mode == 'cluster'
+  when:
+    - redis_install_new_version
+    - redis_mode == 'cluster'
