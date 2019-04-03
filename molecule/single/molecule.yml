@@ -6,13 +6,13 @@ driver:
 lint:
   name: yamllint
   options:
-    config-file: molecule/.yamllint
+    config-file: .yamllint
 platforms:
-  - name: redis.cont
+  - name: redis
     groups:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
-    privileged: True
+    privileged: False
     capabilities:
       - SYS_ADMIN
     volumes:
@@ -22,6 +22,8 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  options:
+    skip-tags: os-configure
 scenario:
   name: single
 verifier:

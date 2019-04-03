@@ -4,46 +4,52 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: vito.cont
+  - name: vito
     groups:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
-    privileged: True
+    hostname: vito
+    privileged: False
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     command: '/lib/systemd/systemd'
 
-  - name: sony.cont
+  - name: sonny
     groups:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
-    privileged: True
+    hostname: sonny
+    privileged: False
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     command: '/lib/systemd/systemd'
 
-  - name: michael.cont
+  - name: michael
     groups:
       - redis
     image: geerlingguy/docker-debian9-ansible:latest
-    privileged: True
+    hostname: michael
+    privileged: False
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     command: '/lib/systemd/systemd'
+
 lint:
   name: yamllint
   options:
-    config-file: molecule/.yamllint
+    config-file: .yamllint
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  options:
+    skip-tags: os-configure
 scenario:
   name: cluster
 verifier:

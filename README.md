@@ -1,8 +1,11 @@
 ![Logo](logo.gif)
-[![Build Status](https://travis-ci.org/idealista/redis-role.png)](https://travis-ci.org/idealista/redis-role)
+
 # Redis Ansible role
 
-This ansible role installs Redis server in a debian environment.
+[![Build Status](https://travis-ci.org/idealista/redis-role.png)](https://travis-ci.org/idealista/redis-role)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-idealista.redis__role-B62682.svg)](https://galaxy.ansible.com/idealista/redis-role)
+
+This Ansible role installs Redis server in a Debian environment.
 
 - [Getting Started](#getting-started)
 	- [Prerequisities](#prerequisities)
@@ -17,14 +20,14 @@ This ansible role installs Redis server in a debian environment.
 
 ## Getting Started
 
-These instructions will get you a copy of the role for your ansible playbook. Once launched, it will install a [Redis](https://redis.io/) server.
+These instructions will get you a copy of the role for your Ansible playbook. Once launched, it will install a [Redis](https://redis.io/) server.
 
 ### Prerequisities
 
-Ansible 2.4.0.0 version installed.
+Ansible 2.7.9.0 version installed.
 Inventory destination should be a Debian environment.
 
-For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant](https://www.vagrantup.com/) as driver (with [landrush](https://github.com/vagrant-landrush/landrush) plugin) and [VirtualBox](https://www.virtualbox.org/) as provider.
+For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver.
 
 ### Installing
 
@@ -32,7 +35,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
 - src: idealista.redis-role
-  version: 1.0.0
+  version: 3.0.0
   name: redis
 ```
 
@@ -61,32 +64,27 @@ There is a playbook and example configuration on [cluster mode test](molecule/cl
 ### Install dependencies
 
 ```sh
-pipenv install
+$ pipenv install -r requirements.txt
 ```
 
 For more information read the [pipenv docs](https://docs.pipenv.org/).
 
-### Testing cluster mode
-
-```sh
-pipenv shell
-molecule test -s cluster
-```
-
-_NOTE: This test have been removed from Travis CI because it takes too much time._
-
 ### Testing single mode
 
 ```sh
-pipenv shell
-molecule test -s single
+$ pipenv run molecule test -s single
+```
+
+### Testing cluster mode
+
+```sh
+$ pipenv run molecule test -s cluster
 ```
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.4.0.0-green.svg)
-![Molecule](https://img.shields.io/badge/molecule-2.18.1-green.svg)
-![Goss](https://img.shields.io/badge/goss-0.3.5-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.7.9.0-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-2.20.0-green.svg)
 
 ## Versioning
 

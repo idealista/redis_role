@@ -1,0 +1,28 @@
+---
+
+redis_mode: cluster
+
+# you can include here redis.conf's vars
+# use quotation mark to avoid python value override
+redis_confs:
+  bind: "0.0.0.0"
+  protected-mode: "no"
+  port: "6379"  # this is mandatory
+  pidfile: "/var/run/redis/redis.pid"
+  loglevel: "notice"
+  logfile: "{{ redis_log_path }}/redis.log"
+  databases: "16"
+  rdbcompression: "yes"
+  rdbchecksum: "yes"
+  supervised: "systemd"
+  slave-serve-stale-data: "yes"
+  slave-read-only: "yes"
+  stop-writes-on-bgsave-error: "yes"
+  # include to start node as cluster member
+  cluster-node-timeout: "2000"
+  cluster-enabled: "yes"
+  cluster-config-file: node.conf
+  appendonly: "yes"
+  appendfilename: "appendonly-db.aof"
+  dbfilename: "dump.rdb"
+  daemonize: "yes"  # mandatory for cluster node
