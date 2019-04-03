@@ -88,7 +88,7 @@
   make:
     chdir: "{{ redis_install_path }}"
     target: test
-  when: not redis_is_installed or redis_install_new_version
+  when: (not redis_is_installed or redis_install_new_version) and redis_check_build
 
 - name: REDIS | Make install
   make:
