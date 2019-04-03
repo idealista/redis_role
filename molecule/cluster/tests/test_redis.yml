@@ -50,3 +50,7 @@ command:
     exit-status: 0
     stdout:
       - PONG
+  redis-cli CLUSTER INFO:
+    exit-status: 0
+    stdout:
+      - cluster_size:3

@@ -44,3 +44,9 @@ service:
   redis-server:
     enabled: true
     running: true
+
+command:
+  redis-cli PING:
+    exit-status: 0
+    stdout:
+      - PONG
