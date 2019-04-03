@@ -3,8 +3,17 @@
 ## General
 redis_version: 4.0.1
 
-redis_mode: single  # cluster or single
-redis_disable_transparent_hugepage: true  # set this to false when installing the role inside container
+# cluster or single
+redis_mode: single
+
+# set this to false when installing the role inside container
+redis_disable_transparent_hugepage: true  
+
+# Enables/Disables 'make test' step during installation
+# Is an optional step: (https://redis.io/topics/quickstart)
+# 'At this point you can try if your build works correctly by typing make test, 
+# but this is an optional step'
+redis_check_build: false
 
 ## Service options
 
