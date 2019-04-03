@@ -15,6 +15,11 @@
   tags:
     - configure
 
+- name: REDIS | Operating System Configure
+  include: os-config.yml
+  tags:
+    - os-configure
+
 - name: REDIS | Service
   include: service.yml
   tags:
