@@ -3,7 +3,7 @@ galaxy_info:
   company: Idealista S.A.U
   author: Idealista S.A.U
   description: Redis in-memory data structure store
-  min_ansible_version: 2.4.5.0
+  min_ansible_version: 2.7.9.0
   license: Apache 2.0
   platforms:
     - name: Debian
