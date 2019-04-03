@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+## [3.0.0](https://github.com/idealista/redis-role/tree/2.2.0) (2019-04-03)
+[Full Changelog](https://github.com/idealista/redis-role/compare/2.2.0...3.0.0)
 ### Fixed
 - *[#61](https://github.com/idealista/redis-role/issues/61) Fixing Redis Cluster tests* @dortegau @frantsao
 
