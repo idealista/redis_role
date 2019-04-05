@@ -50,14 +50,14 @@
     path: "{{ redis_install_path }}"
   when: not redis_is_installed or redis_install_new_version
 
-- name: REDIS | install required libs
+- name: REDIS | Install required libs
   apt:
     name: "{{ redis_required_libs }}"
     update_cache: true
     state: present
     cache_valid_time: 3600
 
-- name: REDIS | install cluster required libs
+- name: REDIS | Install cluster required libs
   apt:
     name: "{{ redis_required_libs_cluster }}"
     update_cache: true

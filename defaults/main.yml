@@ -2,7 +2,7 @@
 
 ## General
 redis_version: 4.0.1
-redis_ruby_gem_version: 4.0.1
+redis_ruby_gem_version: "{{ redis_version }}"
 
 # cluster or single
 redis_mode: single
