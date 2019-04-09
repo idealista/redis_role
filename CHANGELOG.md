@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis-role/tree/develop)
 
+### Added
+- *[#68](https://github.com/idealista/redis-role/issues/68) Adding Redis Cluster specific tests using `CLUSTER INFO` command* @dortegau
+- *[#70](https://github.com/idealista/redis-role/issues/70) Adding version to Redis Ruby Gem installation (works only in redis 3.x/4.x)* @dortegau
+
 ## [3.0.0](https://github.com/idealista/redis-role/tree/3.0.0) (2019-04-03)
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.2.0...3.0.0)
 ### Fixed
@@ -16,6 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 [Full Changelog](https://github.com/idealista/redis-role/compare/2.1.9...2.2.0)
 ### Added
 - *[#43](https://github.com/idealista/redis-role/issues/43) Playbooks can provide config templates* @jnogol
+
 ### Fixed
 - *Fix travis tests* @jnogol
 

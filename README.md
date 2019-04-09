@@ -35,7 +35,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
 - src: idealista.redis-role
-  version: 3.0.0
+  version: 3.1.0
   name: redis
 ```
 
@@ -57,14 +57,14 @@ Use in a playbook:
 
 Look to the [defaults](defaults/main.yml) properties file to see the possible configuration properties.
 
-There is a playbook and example configuration on [cluster mode test](molecule/cluster/). This role have been testing to deploy a cluster provisioning host one by one (`serial: 1`).
+**Note:** It's recommended to use [Prometheus Redis Exporter Role](https://github.com/idealista/prometheus_redis_exporter-role) if Prometheus monitoring is needed.
 
 ## Testing
 
 ### Install dependencies
 
 ```sh
-$ pipenv install -r requirements.txt
+$ pipenv install -r test-requirements.txt
 ```
 
 For more information read the [pipenv docs](https://docs.pipenv.org/).

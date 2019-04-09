@@ -1,12 +1,12 @@
 ---
 
-- name: REDIS | Create redis group
+- name: REDIS | Create Redis group
   group:
     name: "{{ redis_group }}"
     state: present
   when: not redis_is_installed
 
-- name: REDIS | Create redis user
+- name: REDIS | Create Redis user
   user:
     name: "{{ redis_user }}"
     group: "{{ redis_group }}"
@@ -50,15 +50,19 @@
     path: "{{ redis_install_path }}"
   when: not redis_is_installed or redis_install_new_version
 
-- name: REDIS | install required libs
+- name: REDIS | Install required libs
   apt:
     name: "{{ redis_required_libs }}"
-    update_cache: yes
+    update_cache: true
+    state: present
+    cache_valid_time: 3600
 
-- name: REDIS | install cluster required libs
+- name: REDIS | Install cluster required libs
   apt:
     name: "{{ redis_required_libs_cluster }}"
-    update_cache: yes
+    update_cache: true
+    state: present
+    cache_valid_time: 3600
   when: redis_mode == 'cluster'
 
 - name: REDIS | Download sources
@@ -97,9 +101,9 @@
   become: yes
   when: not redis_is_installed or redis_install_new_version
 
-- name: REDIS | install redis gem
+- name: REDIS | install Redis Ruby Gem
   gem:
     name: redis
     state: present
-  become: yes
+    version: "{{ redis_ruby_gem_version }}"
   when: redis_mode == 'cluster'
