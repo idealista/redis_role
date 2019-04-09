@@ -8,7 +8,3 @@
 - name: REDIS | Set installed fact
   set_fact:
     redis_is_installed: "{{ redis_is_installed_command.stdout }}"
-
-- name: REDIS | Set version fact
-  set_fact:
-    redis_install_new_version: "{{ redis_install_new_version }}"
