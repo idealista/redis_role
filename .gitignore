@@ -7,4 +7,3 @@ tests/__pycache__
 *.iml
 .idea/
 *.retry
-Pipfile*
