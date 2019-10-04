@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 - *[#62](https://github.com/idealista/redis_role/issues/62) Added support for Redis 5* @frantsao
 - *[#72](https://github.com/idealista/redis_role/issues/72) Renamed role @frantsao
 - Improved molecule and travis tests @frantsao
+### Fixed
+- Disable permanently THPs @frantsao
 
 ## [3.0.0](https://github.com/idealista/redis_role/tree/3.0.0) (2019-04-03)
 [Full Changelog](https://github.com/idealista/redis_role/compare/2.2.0...3.0.0)

@@ -1,0 +1,8 @@
+# /etc/systemd/system/disable_thp.service
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/disable_thp.sh
+
+[Install]
+WantedBy=multi-user.target
