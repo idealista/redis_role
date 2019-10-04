@@ -35,7 +35,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
 - src: idealista.redis_role
-  version: 3.1.0
+  version: 4.0.0
   name: redis
 ```
 
