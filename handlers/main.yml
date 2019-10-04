@@ -11,5 +11,3 @@
   systemd:
     name: disable_thp
     state: restarted
-
-
