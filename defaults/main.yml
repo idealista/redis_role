@@ -1,8 +1,15 @@
 ---
 
 ## General
-redis_version: 4.0.1
+redis_version: 5.0.5
 redis_ruby_gem_version: "{{ redis_version }}"
+
+# Redis 5
+redis_cluster_command: "{{ redis_bin_path }}/redis-cli --cluster"
+redis_cluster_legacy: false
+# Redis <5
+# redis_cluster_command: "{{ redis_bin_path }}/redis-trib.rb"
+# redis_cluster_legacy: true
 
 # cluster or single
 redis_mode: single
@@ -23,8 +30,9 @@ redis_user: redis
 redis_group: redis
 
 # Files & Paths
-redis_install_path: "/redis"  # redis source will be here
-redis_conf_path: "/conf/redis"  # redis configuration and running instance data will be here
+redis_build_path: "/usr/src/redis"  # redis source will be here
+redis_bin_path: "/usr/local/bin"  # redis source will be here
+redis_conf_path: "/usr/local/etc/redis"  # redis configuration and running instance data will be here
 redis_server_conf_template_path: redis.conf.j2
 redis_manager_template_path: instance-manager.sh.j2
 redis_service_template_path: redis-server.service.j2

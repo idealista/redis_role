@@ -11,8 +11,8 @@ RuntimeDirectory=redis
 User={{ redis_user }}
 Group={{ redis_group }}
 
-ExecStart={{ redis_conf_path }}/instance-manager.sh start
-ExecStop={{ redis_conf_path }}/instance-manager.sh stop
+ExecStart={{ redis_bin_path }}/instance-manager.sh start
+ExecStop={{ redis_bin_path }}/instance-manager.sh stop
 Restart=always
 
 [Install]

@@ -16,10 +16,18 @@
     group: "{{ redis_group }}"
     mode: 0644
 
+- name: REDIS | Copy default config
+  copy:
+    src: "{{ redis_build_path }}/redis.conf"
+    dest: "{{ redis_conf_path }}/redis-default.conf"
+    mode: 0644
+    remote_src: yes
+  when: include_redis_default_conf
+
 - name: REDIS | Copy manager script
   template:
     src: "{{ redis_manager_template_path }}"
-    dest: "{{ redis_conf_path }}/instance-manager.sh"
+    dest: "{{ redis_bin_path }}/instance-manager.sh"
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
     mode: 0755
