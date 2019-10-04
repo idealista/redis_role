@@ -49,6 +49,7 @@
         volumes: "{{ item.volumes | default(omit) }}"
         capabilities: "{{ item.capabilities | default(omit) }}"
         ports: "{{ item.exposed_ports | default(omit) }}"
+        tmpfs: "{{ item.tmpfs | default(omit) }}"
         network_mode: bridge
         networks:
           - name: "redis-cluster-network"

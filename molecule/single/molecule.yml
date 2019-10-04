@@ -11,12 +11,16 @@ platforms:
   - name: redis
     groups:
       - redis
-    image: geerlingguy/docker-debian9-ansible:latest
-    privileged: False
+    image: ${DOCKER_IMAGE_BASE:-debian:buster-slim}
+    privileged: false
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
     command: '/lib/systemd/systemd'
 provisioner:
   name: ansible
@@ -30,4 +34,4 @@ verifier:
   name: goss
   lint:
     name: yamllint
-    enabled: False
+    enabled: false

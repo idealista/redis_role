@@ -7,37 +7,49 @@ platforms:
   - name: vito
     groups:
       - redis
-    image: geerlingguy/docker-debian9-ansible:latest
+    image: ${DOCKER_IMAGE_BASE:-debian:buster-slim}
     hostname: vito
-    privileged: False
+    privileged: false
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
     command: '/lib/systemd/systemd'
 
   - name: sonny
     groups:
       - redis
-    image: geerlingguy/docker-debian9-ansible:latest
+    image: ${DOCKER_IMAGE_BASE:-debian:buster-slim}
     hostname: sonny
-    privileged: False
+    privileged: false
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
     command: '/lib/systemd/systemd'
 
   - name: michael
     groups:
       - redis
-    image: geerlingguy/docker-debian9-ansible:latest
+    image: ${DOCKER_IMAGE_BASE:-debian:buster-slim}
     hostname: michael
-    privileged: False
+    privileged: false
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
     command: '/lib/systemd/systemd'
 
 lint:
@@ -56,4 +68,4 @@ verifier:
   name: goss
   lint:
     name: yamllint
-    enabled: False
+    enabled: false
