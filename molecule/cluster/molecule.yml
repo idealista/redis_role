@@ -58,6 +58,10 @@ lint:
     config-file: .yamllint
 provisioner:
   name: ansible
+  inventory:
+    group_vars:
+      redis:
+        redis_version: ${REDIS_VERSION:-"5.0.5"}
   lint:
     name: ansible-lint
   options:

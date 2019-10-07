@@ -24,10 +24,15 @@ platforms:
     command: '/lib/systemd/systemd'
 provisioner:
   name: ansible
+  inventory:
+    group_vars:
+      redis:
+        redis_version: ${REDIS_VERSION:-"5.0.5"}
   lint:
     name: ansible-lint
   options:
     skip-tags: os-configure
+
 scenario:
   name: single
 verifier:
