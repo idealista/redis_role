@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+{{ ansible_managed | comment }}
 PORT={{ redis_confs.port }}
 CURRENT_HOST="{{ inventory_hostname }}"
 NODE_IP="{{ hostvars[inventory_hostname].ansible_default_ipv4.address }}:$PORT"
