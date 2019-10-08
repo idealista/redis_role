@@ -15,5 +15,11 @@ REDIS_CONF={{ redis_conf_path }}
 NODE_CONF_FILE={{ redis_confs['cluster-config-file'] }}
 
 redis-trib () {
-{{ redis_cluster_command }} $@
+{% if redis_cluster_legacy %}
+{{ redis_bin_path }}/redis-trib.rb $@
+{% else %}
+{{ redis_bin_path }}/redis-cli --cluster $@
+{% endif %}
+
 }
+

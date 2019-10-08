@@ -26,3 +26,4 @@ redis_confs:
   appendfilename: "appendonly-db.aof"
   dbfilename: "dump.rdb"
   daemonize: "yes"  # mandatory for cluster node
+redis_os_tuning: false
