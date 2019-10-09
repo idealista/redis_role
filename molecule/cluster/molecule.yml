@@ -7,7 +7,7 @@ platforms:
   - name: vito
     groups:
       - redis
-    image: ${DOCKER_IMAGE_BASE:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     hostname: vito
     privileged: false
     capabilities:
@@ -23,7 +23,7 @@ platforms:
   - name: sonny
     groups:
       - redis
-    image: ${DOCKER_IMAGE_BASE:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     hostname: sonny
     privileged: false
     capabilities:
@@ -39,7 +39,7 @@ platforms:
   - name: michael
     groups:
       - redis
-    image: ${DOCKER_IMAGE_BASE:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     hostname: michael
     privileged: false
     capabilities:

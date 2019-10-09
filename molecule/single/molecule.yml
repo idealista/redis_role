@@ -11,7 +11,7 @@ platforms:
   - name: redis
     groups:
       - redis
-    image: ${DOCKER_IMAGE_BASE:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     privileged: false
     capabilities:
       - SYS_ADMIN
