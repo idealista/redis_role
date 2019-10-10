@@ -6,3 +6,8 @@
     state: restarted
 
   when: redis_service_state != 'stopped'
+
+- name: oneshot disable thp
+  systemd:
+    name: disable_thp
+    state: restarted

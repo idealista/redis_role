@@ -7,37 +7,49 @@ platforms:
   - name: vito
     groups:
       - redis
-    image: geerlingguy/docker-debian9-ansible:latest
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     hostname: vito
-    privileged: False
+    privileged: false
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
     command: '/lib/systemd/systemd'
 
   - name: sonny
     groups:
       - redis
-    image: geerlingguy/docker-debian9-ansible:latest
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     hostname: sonny
-    privileged: False
+    privileged: false
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
     command: '/lib/systemd/systemd'
 
   - name: michael
     groups:
       - redis
-    image: geerlingguy/docker-debian9-ansible:latest
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     hostname: michael
-    privileged: False
+    privileged: false
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
     command: '/lib/systemd/systemd'
 
 lint:
@@ -46,14 +58,18 @@ lint:
     config-file: .yamllint
 provisioner:
   name: ansible
+  inventory:
+    group_vars:
+      redis:
+        redis_version: ${REDIS_VERSION:-"5.0.5"}
+        redis_cluster_legacy: ${REDIS_CLUSTER_LEGACY:-false}
+        redis_ruby_gem_version: ${REDIS_RUBY_GEM:-4.1.3}
   lint:
     name: ansible-lint
-  options:
-    skip-tags: os-configure
 scenario:
   name: cluster
 verifier:
   name: goss
   lint:
     name: yamllint
-    enabled: False
+    enabled: false

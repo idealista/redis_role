@@ -47,7 +47,8 @@
 - name: REDIS | Remove existing install folder
   file:
     state: absent
-    path: "{{ redis_install_path }}"
+    path: "{{ redis_build_path }}"
+  ignore_errors: true
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Install required libs
@@ -75,28 +76,28 @@
 - name: REDIS | Extract sources
   unarchive:
     copy: no
-    src: /tmp/redis-{{ redis_version }}.tar.gz
-    dest: /tmp
+    src: "/tmp/redis-{{ redis_version }}.tar.gz"
+    dest: "/tmp"
   when: not redis_is_installed or redis_install_new_version
 
-- name: REDIS | Move sources to install path
-  command: "mv /tmp/redis-{{ redis_version }}/ {{ redis_install_path }}"
+- name: REDIS | Move sources to build path
+  command: "mv /tmp/redis-{{ redis_version }} {{ redis_build_path }}"
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Make
   make:
-    chdir: "{{ redis_install_path }}"
+    chdir: "{{ redis_build_path }}"
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Make test
   make:
-    chdir: "{{ redis_install_path }}"
+    chdir: "{{ redis_build_path }}"
     target: test
   when: (not redis_is_installed or redis_install_new_version) and redis_check_build
 
 - name: REDIS | Make install
   make:
-    chdir: "{{ redis_install_path }}"
+    chdir: "{{ redis_build_path }}"
     target: install
   become: yes
   when: not redis_is_installed or redis_install_new_version
@@ -106,4 +107,12 @@
     name: redis
     state: present
     version: "{{ redis_ruby_gem_version }}"
+  when: redis_mode == 'cluster' and redis_cluster_legacy
+
+- name: REDIS | install redis-trib (legacy)
+  copy:
+    src: "{{ redis_build_path }}/src/redis-trib.rb"
+    dest: "{{ redis_bin_path }}"
+    mode: 0775
+    remote_src: yes
   when: redis_mode == 'cluster'

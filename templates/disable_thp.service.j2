@@ -1,0 +1,8 @@
+{{ ansible_managed | comment }}
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/disable_thp.sh
+
+[Install]
+WantedBy=multi-user.target

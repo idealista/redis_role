@@ -7,14 +7,16 @@ file:
     group: {{ redis_group }}
     exists: true
     filetype: directory
-  {{ redis_install_path }}/redis.conf:
+  {{ redis_build_path }}/redis.conf:
     exists: true
-  {{ redis_conf_path }}/instance-manager.sh:
+  {{ redis_bin_path }}/instance-manager.sh:
     exists: true
   {{ redis_conf_path }}/redis.conf:
     exists: true
-  {{ redis_install_path }}/src/redis-trib.rb:
+{% if redis_version | regex_search ('^5') %}
+  {{ redis_bin_path }}/redis-trib.rb:
     exists: true
+{% endif %}
   /lib/systemd/system/redis-server.service:
     exists: true
   {{ redis_log_path }}/redis.log:
