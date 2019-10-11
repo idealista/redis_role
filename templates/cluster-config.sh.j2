@@ -8,7 +8,11 @@ HOSTS_IPS="{% for h in ansible_play_hosts %}
 {{ hostvars[h]['ansible_default_ipv4']['address'] }} {% endfor %}"
 
 {% if redis_cluster_replicas != 0 %}
+{% if redis_cluster_legacy %}
 REPLICAS="--replicas {{ redis_cluster_replicas }}"
+{% else %}
+REPLICAS="--cluster-replicas {{ redis_cluster_replicas }}"
+{% endif %}
 {% endif %}
 REDIS_PATH={{ redis_bin_path }}
 REDIS_CONF={{ redis_conf_path }}
