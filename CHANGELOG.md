@@ -4,7 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
 
+
 ## [4.0.0](https://github.com/idealista/redis_role/tree/4.0.0) (2019-10-11)
+[Full Changelog](https://github.com/idealista/redis_role/compare/3.0.0...4.0.0)
 ### Added
 - *[#68](https://github.com/idealista/redis_role/issues/68) Adding Redis Cluster specific tests using `CLUSTER INFO` command* @dortegau
 - *[#70](https://github.com/idealista/redis_role/issues/70) Adding version to Redis Ruby Gem installation (works only in redis 3.x/4.x)* @dortegau
