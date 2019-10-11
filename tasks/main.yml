@@ -19,6 +19,7 @@
   include: os-config.yml
   tags:
     - os-configure
+  when: redis_os_tuning
 
 - name: REDIS | Service
   include: service.yml
