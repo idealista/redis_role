@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
 
 
+## [4.0.1](https://github.com/idealista/redis_role/tree/4.0.1) (2019-10-11)
+[Full Changelog](https://github.com/idealista/redis_role/compare/4.0.0...4.0.1)
+### Fixed
+- Fixed new replica option in Redis 5 cluster; improved molecule tests @frantsao
+
 ## [4.0.0](https://github.com/idealista/redis_role/tree/4.0.0) (2019-10-11)
 [Full Changelog](https://github.com/idealista/redis_role/compare/3.0.0...4.0.0)
 ### Added
