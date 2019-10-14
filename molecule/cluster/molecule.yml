@@ -4,11 +4,11 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: vito
+  - name: rediscluster1
     groups:
       - redis
     image: ${MOLECULE_DISTRO:-debian:buster-slim}
-    hostname: vito
+    hostname: rediscluster1
     privileged: false
     capabilities:
       - SYS_ADMIN
@@ -19,12 +19,11 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
-
-  - name: sonny
+  - name: rediscluster2
     groups:
       - redis
     image: ${MOLECULE_DISTRO:-debian:buster-slim}
-    hostname: sonny
+    hostname: rediscluster2
     privileged: false
     capabilities:
       - SYS_ADMIN
@@ -35,12 +34,11 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
-
-  - name: michael
+  - name: rediscluster3
     groups:
       - redis
     image: ${MOLECULE_DISTRO:-debian:buster-slim}
-    hostname: michael
+    hostname: rediscluster3
     privileged: false
     capabilities:
       - SYS_ADMIN
@@ -51,7 +49,51 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
-
+  - name: rediscluster4
+    groups:
+      - redis
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    hostname: rediscluster4
+    privileged: false
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
+    command: '/lib/systemd/systemd'
+  - name: rediscluster5
+    groups:
+      - redis
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    hostname: rediscluster5
+    privileged: false
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
+    command: '/lib/systemd/systemd'
+  - name: rediscluster6
+    groups:
+      - redis
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    hostname: rediscluster6
+    privileged: false
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /redis
+      - /tmp
+      - /run
+    command: '/lib/systemd/systemd'
 lint:
   name: yamllint
   options:
