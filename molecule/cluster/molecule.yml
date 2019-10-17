@@ -19,6 +19,7 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
     networks:
       - name: "redis-cluster-network"
   - name: rediscluster2
@@ -36,6 +37,7 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
     networks:
       - name: "redis-cluster-network"
   - name: rediscluster3
@@ -53,6 +55,7 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
     networks:
       - name: "redis-cluster-network"
   - name: rediscluster4
@@ -70,6 +73,7 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
     networks:
       - name: "redis-cluster-network"
   - name: rediscluster5
@@ -87,6 +91,7 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
     networks:
       - name: "redis-cluster-network"
   - name: rediscluster6
@@ -104,6 +109,7 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
     networks:
       - name: "redis-cluster-network"
 lint:

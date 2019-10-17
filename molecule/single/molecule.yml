@@ -22,6 +22,7 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
 provisioner:
   name: ansible
   inventory:
