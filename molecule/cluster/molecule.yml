@@ -19,6 +19,8 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    networks:
+      - name: "redis-cluster-network"
   - name: rediscluster2
     groups:
       - redis
@@ -34,6 +36,8 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    networks:
+      - name: "redis-cluster-network"
   - name: rediscluster3
     groups:
       - redis
@@ -49,6 +53,8 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    networks:
+      - name: "redis-cluster-network"
   - name: rediscluster4
     groups:
       - redis
@@ -64,6 +70,8 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    networks:
+      - name: "redis-cluster-network"
   - name: rediscluster5
     groups:
       - redis
@@ -79,6 +87,8 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    networks:
+      - name: "redis-cluster-network"
   - name: rediscluster6
     groups:
       - redis
@@ -94,6 +104,8 @@ platforms:
       - /tmp
       - /run
     command: '/lib/systemd/systemd'
+    networks:
+      - name: "redis-cluster-network"
 lint:
   name: yamllint
   options:
