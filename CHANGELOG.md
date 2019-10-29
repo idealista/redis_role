@@ -4,7 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
 
-
+## [4.0.2](https://github.com/idealista/redis_role/tree/4.0.2) (2019-10-29)
+[Full Changelog](https://github.com/idealista/redis_role/compare/4.0.1...4.0.2)
+### Added
+- *[#78](https://github.com/idealista/redis_role/issues/78) Updated molecule configuration to 2.22 version; updated goss version* @frantsao
+ 
 ## [4.0.1](https://github.com/idealista/redis_role/tree/4.0.1) (2019-10-11)
 [Full Changelog](https://github.com/idealista/redis_role/compare/4.0.0...4.0.1)
 ### Fixed
