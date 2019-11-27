@@ -15,6 +15,7 @@
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
     mode: 0644
+  notify: restart redis
 
 - name: REDIS | Copy default config
   copy:
@@ -22,6 +23,7 @@
     dest: "{{ redis_conf_path }}/redis-default.conf"
     mode: 0644
     remote_src: yes
+  notify: restart redis
   when: include_redis_default_conf
 
 - name: REDIS | Copy manager script
@@ -31,6 +33,7 @@
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
     mode: 0755
+  notify: restart redis
 
 - name: REDIS | Copy redis-server service config
   template:
