@@ -4,8 +4,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
 
-## [4.0.4](https://github.com/idealista/redis_role/tree/4.0.4) (2020-02-07)
-[Full Changelog](https://github.com/idealista/redis_role/compare/4.0.3...4.0.4)
 ### Fixed
 - *[#67](https://github.com/idealista/redis_role/issues/67) Fix execution of not failing when creating clsuter with unexistent hosts* @pablogcaldito
 
