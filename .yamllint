@@ -2,8 +2,8 @@ extends: default
 
 ignore: |
   .travis.yml
-  /molecule/
-  /tests/
+  molecule/
+  tests/
 
 rules:
   braces:
