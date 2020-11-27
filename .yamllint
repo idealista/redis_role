@@ -2,7 +2,7 @@
 extends: default
 
 ignore: |
-  /molecule/
+  /molecule/**/tests/
 
 
 rules:
