@@ -10,6 +10,8 @@
   user:
     name: "{{ redis_user }}"
     group: "{{ redis_group }}"
+    shell: /usr/sbin/nologin
+    createhome: false
   when: not redis_is_installed
 
 - name: REDIS | Create log directory

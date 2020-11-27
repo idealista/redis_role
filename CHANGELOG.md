@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
+### Fixed
+- *[#91](https://github.com/idealista/redis_role/issues/91) Remove redis user home
+### Added
+- Upgraded to molecule 3
 
 ## [4.0.3](https://github.com/idealista/redis_role/tree/4.0.2) (2019-11-26)
 [Full Changelog](https://github.com/idealista/redis_role/compare/4.0.2...4.0.3)
