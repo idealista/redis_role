@@ -3,14 +3,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
-### Fixed
-- *[#91](https://github.com/idealista/redis_role/issues/91) Remove redis user home
-### Added
-- Upgraded to molecule 3
 
+## [4.0.4](https://github.com/idealista/redis_role/tree/4.0.4) (2020-12-02)
+### Added
+- Upgraded to molecule 3 @blalop
 ### Fixed
 - *[#67](https://github.com/idealista/redis_role/issues/67) Fix execution of not failing when creating clsuter with unexistent hosts* @pablogcaldito
 - *[#86](https://github.com/idealista/redis_role/issues/86) Fix that yamllint does not ignore the folders that is supposed to ignore* @pablogcaldito
+- *[#91](https://github.com/idealista/redis_role/issues/91) Remove redis user home* @blalop
+
 ## [4.0.3](https://github.com/idealista/redis_role/tree/4.0.3) (2019-11-26)
 [Full Changelog](https://github.com/idealista/redis_role/compare/4.0.2...4.0.3)
 ### Fixed
