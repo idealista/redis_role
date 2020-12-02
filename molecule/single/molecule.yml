@@ -3,10 +3,9 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint:
-  name: yamllint
-  options:
-    config-file: .yamllint
+lint: |
+  yamllint .
+  ansible-lint .
 platforms:
   - name: redis
     groups:
@@ -32,12 +31,7 @@ provisioner:
         redis_version: ${REDIS_VERSION:-"5.0.5"}
         redis_cluster_legacy: ${REDIS_CLUSTER_LEGACY:-false}
         redis_ruby_gem_version: ${REDIS_RUBY_GEM:-4.1.3}
-  lint:
-    name: ansible-lint
 scenario:
   name: single
 verifier:
-  name: goss
-  lint:
-    name: yamllint
-    enabled: false
+  name: ansible

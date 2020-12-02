@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
+### Fixed
+- *[#91](https://github.com/idealista/redis_role/issues/91) Remove redis user home
+### Added
+- Upgraded to molecule 3
 
 ### Fixed
 - *[#67](https://github.com/idealista/redis_role/issues/67) Fix execution of not failing when creating clsuter with unexistent hosts* @pablogcaldito

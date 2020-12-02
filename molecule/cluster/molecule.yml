@@ -3,6 +3,9 @@ dependency:
   name: galaxy
 driver:
   name: docker
+lint: |
+  yamllint .
+  ansible-lint .
 platforms:
   - name: rediscluster1
     groups:
@@ -118,10 +121,6 @@ platforms:
     stop_signal: 'RTMIN+3'
     networks:
       - name: "redis-cluster-network"
-lint:
-  name: yamllint
-  options:
-    config-file: .yamllint
 provisioner:
   name: ansible
   inventory:
@@ -130,12 +129,7 @@ provisioner:
         redis_version: ${REDIS_VERSION:-"5.0.5"}
         redis_cluster_legacy: ${REDIS_CLUSTER_LEGACY:-false}
         redis_ruby_gem_version: ${REDIS_RUBY_GEM:-4.1.3}
-  lint:
-    name: ansible-lint
 scenario:
   name: cluster
 verifier:
-  name: goss
-  lint:
-    name: yamllint
-    enabled: false
+  name: ansible
