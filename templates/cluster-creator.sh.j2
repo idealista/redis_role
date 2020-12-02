@@ -15,7 +15,7 @@ done
 
 if [ "$COUNT_PONGS" != "$COUNT_NODES" ]; then
     echo "Waiting nodes..."
-    exit 0
+    exit 1
 fi
 
 COUNT_NODES_ON_CLUSTER=$(redis-cli -p $PORT cluster nodes | wc -l)
