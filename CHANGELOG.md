@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
 
+## [4.0.5](https://github.com/idealista/redis_role/tree/4.0.5) (2022-11-07)
+### Fixed
+- *[#102](https://github.com/idealista/redis_role/issues/102) Cluster config* @sorobon
+
+
 ## [4.0.4](https://github.com/idealista/redis_role/tree/4.0.4) (2020-12-02)
 ### Added
 - Upgraded to molecule 3 @blalop

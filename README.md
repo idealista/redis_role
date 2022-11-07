@@ -2,21 +2,25 @@
 
 # Redis Ansible role
 
-[![Build Status](https://travis-ci.com/idealista/redis_role.png)](https://travis-ci.com/idealista/redis_role)
+[![Build Status](https://travis-ci.com/idealista/redis_role.png)](https://app.travis-ci.com/github/idealista/redis_role)
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-idealista.redis__role-B62682.svg)](https://galaxy.ansible.com/idealista/redis_role)
 
 This Ansible role installs Redis server in a Debian environment.
 
-- [Getting Started](#getting-started)
-	- [Prerequisities](#prerequisities)
-	- [Installing](#installing)
-- [Usage](#usage)
-- [Testing](#testing)
-- [Built With](#built-with)
-- [Versioning](#versioning)
-- [Authors](#authors)
-- [License](#license)
-- [Contributing](#contributing)
+- [Redis Ansible role](#redis-ansible-role)
+  - [Getting Started](#getting-started)
+    - [Prerequisities](#prerequisities)
+    - [Installing](#installing)
+  - [Usage](#usage)
+  - [Testing](#testing)
+    - [Install dependencies](#install-dependencies)
+    - [Testing single mode](#testing-single-mode)
+    - [Testing cluster mode](#testing-cluster-mode)
+  - [Built With](#built-with)
+  - [Versioning](#versioning)
+  - [Authors](#authors)
+  - [License](#license)
+  - [Contributing](#contributing)
 
 ## Getting Started
 
@@ -24,7 +28,7 @@ These instructions will get you a copy of the role for your Ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.8.x.x version installed.
+Ansible 2.9.x.x version installed.
 Inventory destination should be a Debian environment.
 
 For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver.
