@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
+
+## [4.0.5](https://github.com/idealista/redis_role/tree/4.0.5) (2022-11-07)
 ### Fixed
 - *[#102](https://github.com/idealista/redis_role/issues/102) Cluster config* @sorobon
 
