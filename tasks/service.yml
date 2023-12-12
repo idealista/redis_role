@@ -11,6 +11,8 @@
 - name: REDIS | Configure nodes as cluster
   run_once: true
   command: "{{ redis_conf_path }}/cluster-creator.sh"
+  environment:
+   REDISCLI_AUTH: "{{ redis_password }}"
   when:
     - redis_mode == 'cluster'
     - not redis_is_installed
