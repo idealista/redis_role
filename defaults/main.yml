@@ -78,3 +78,6 @@ redis_confs:
   appendfilename: "appendonly-db.aof"
   dbfilename: "dump.rdb"
   daemonize: "yes"  # mandatory for cluster node
+
+# use this variable to provide a password for redis authentication
+#redis_password: XohSae6Thiezeb8Tech6oobobaiCu0eeghee8ace
