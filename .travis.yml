@@ -9,15 +9,9 @@ install:
   - pipenv sync
 env:
   matrix:
-    - MOLECULE_DISTRO=debian:buster-slim REDIS_VERSION=5.0.9
-    - MOLECULE_DISTRO=debian:stretch-slim REDIS_VERSION=5.0.9
-    - MOLECULE_DISTRO=debian:jessie-slim REDIS_VERSION=5.0.9
-    - MOLECULE_DISTRO=debian:buster-slim REDIS_VERSION=4.0.14 REDIS_CLUSTER_LEGACY=true REDIS_RUBY_GEM=4.1.3
-    - MOLECULE_DISTRO=debian:stretch-slim REDIS_VERSION=4.0.14 REDIS_CLUSTER_LEGACY=true REDIS_RUBY_GEM=4.1.3
-    - MOLECULE_DISTRO=debian:jessie-slim REDIS_VERSION=4.0.14 REDIS_CLUSTER_LEGACY=true REDIS_RUBY_GEM=3.3.5
-    - MOLECULE_DISTRO=debian:buster-slim REDIS_VERSION=3.2.13 REDIS_CLUSTER_LEGACY=true REDIS_RUBY_GEM=3.3.5
-    - MOLECULE_DISTRO=debian:stretch-slim REDIS_VERSION=3.2.13 REDIS_CLUSTER_LEGACY=true REDIS_RUBY_GEM=3.3.5
-    - MOLECULE_DISTRO=debian:jessie-slim REDIS_VERSION=3.2.13 REDIS_CLUSTER_LEGACY=true REDIS_RUBY_GEM=3.3.5
+    - MOLECULE_DISTRO=debian:bullseye-slim REDIS_VERSION=7.2.3
+    - MOLECULE_DISTRO=debian:buster-slim REDIS_VERSION=7.2.3
+    - MOLECULE_DISTRO=debian:stretch-slim REDIS_VERSION=7.2.3
 script:
   - travis_wait 30 pipenv run molecule test -s single
   - travis_wait 30 pipenv run molecule test -s cluster
