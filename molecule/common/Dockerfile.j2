@@ -14,6 +14,8 @@ FROM {{ item.image }}
         {% set distro = "buster" %}
     {% elif item.image is regex('bullseye') or item.image is regex('debian11') %}
         {% set distro = "bullseye" %}
+    {% elif item.image is regex('bookworm') or item.image is regex('debian12') %}
+        {% set distro = "bookworm" %}
     {% endif %}
 {% endif %}
 
@@ -37,7 +39,7 @@ RUN apt-get install -y python sudo bash ca-certificates iproute2 systemd systemd
     apt-get clean
 {% endif %}
 
-{% if distro == "bullseye" %}
+{% if distro == "bullseye" or distro == "bookworm" %}
 RUN apt-get install -y python3 sudo bash ca-certificates iproute2 systemd systemd-sysv python3-pip inetutils-ping && \
     apt-get clean
 {% endif %}
