@@ -8,7 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Fixed
 - *[#106](https://github.com/idealista/redis_role/tree/Feature/106) Fix old debian apt problem @enricocotti
 ### Added
-- *[#106](https://github.com/idealista/redis_role/tree/Feature/106) Enable password Authentication and upgrade Redis verison (5.0.9) @enricocotti
+- *[#106](https://github.com/idealista/redis_role/tree/Feature/106) Enable password Authentication and upgrade Redis to last verison (7.2.3) @enricocotti
+- *[#106](https://github.com/idealista/redis_role/tree/Feature/106) Add support bullseye/bookworm @enricocotti
 
 ## [4.0.5](https://github.com/idealista/redis_role/tree/4.0.5) (2022-11-07)
 ### Fixed
