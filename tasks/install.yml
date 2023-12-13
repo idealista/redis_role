@@ -54,12 +54,22 @@
   ignore_errors: true
   when: not redis_is_installed or redis_install_new_version
 
+- name: REDIS | Install required libs force 'jessie'
+  apt:
+    name: "{{ redis_required_libs }}"
+    update_cache: true
+    state: present
+    cache_valid_time: 3600
+    force: yes
+  when: ansible_distribution_release == 'jessie'
+
 - name: REDIS | Install required libs
   apt:
     name: "{{ redis_required_libs }}"
     update_cache: true
     state: present
     cache_valid_time: 3600
+  when: ansible_distribution_release != 'jessie'
 
 - name: REDIS | Install cluster required libs
   apt:
