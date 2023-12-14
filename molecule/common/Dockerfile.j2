@@ -22,6 +22,7 @@ FROM {{ item.image }}
 {% if distro == "bookworm" %}
 RUN sed -i -e 's/^APT/# APT/' -e 's/^DPkg/# DPkg/' \
       /etc/apt/apt.conf.d/docker-clean
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 {% endif %}
 
 {% if distro == "stretch" or distro == "jessie" %}
