@@ -9,6 +9,7 @@ install:
   - pipenv sync
 env:
   matrix:
+    - MOLECULE_DISTRO=debian:bookworm-slim REDIS_VERSION=7.2.3
     - MOLECULE_DISTRO=debian:bullseye-slim REDIS_VERSION=7.2.3
     - MOLECULE_DISTRO=debian:buster-slim REDIS_VERSION=7.2.3
     - MOLECULE_DISTRO=debian:stretch-slim REDIS_VERSION=7.2.3
