@@ -19,6 +19,11 @@ FROM {{ item.image }}
     {% endif %}
 {% endif %}
 
+{% if distro == "bookworm" %}
+RUN sed -i -e 's/^APT/# APT/' -e 's/^DPkg/# DPkg/' \
+      /etc/apt/apt.conf.d/docker-clean
+{% endif %}
+
 {% if distro == "stretch" or distro == "jessie" %}
 RUN echo "deb http://archive.debian.org/debian/ {{ distro }} main contrib non-free" > /etc/apt/sources.list && \
     echo "deb-src http://archive.debian.org/debian/ {{ distro }} main contrib non-free" >> /etc/apt/sources.list && \
