@@ -1,0 +1,45 @@
+# Molecule managed
+{% if item.registry is defined %}
+FROM {{ item.registry.url }}/{{ item.image }}
+{% else %}
+FROM {{ item.image }}
+{% endif %}
+
+{% if item.image is defined %}
+    {% if item.image is regex('stretch') or item.image is regex('debian9') %}
+        {% set distro = "stretch" %}
+    {% elif item.image is regex('jessie') or item.image is regex('debian8') %}
+        {% set distro = "jessie" %}
+    {% elif item.image is regex('buster') or item.image is regex('debian10') %}
+        {% set distro = "buster" %}
+    {% elif item.image is regex('bullseye') or item.image is regex('debian11') %}
+        {% set distro = "bullseye" %}
+    {% elif item.image is regex('bookworm') or item.image is regex('debian12') %}
+        {% set distro = "bookworm" %}
+    {% endif %}
+{% endif %}
+
+{% if distro == "stretch" or distro == "jessie" %}
+RUN echo "deb http://archive.debian.org/debian/ {{ distro }} main contrib non-free" > /etc/apt/sources.list && \
+    echo "deb-src http://archive.debian.org/debian/ {{ distro }} main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian-security {{ distro }}/updates main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb-src http://archive.debian.org/debian-security {{ distro }}/updates main contrib non-free" >> /etc/apt/sources.list && \
+    {% if distro == "stretch" %}
+    echo "deb http://archive.debian.org/debian/ {{ distro }}-proposed-updates main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb-src http://archive.debian.org/debian/ {{ distro }}-proposed-updates main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian/ {{ distro }}-backports main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb-src http://archive.debian.org/debian/ {{ distro }}-backports main contrib non-free" >> /etc/apt/sources.list && \
+    {% endif %}
+    apt-get update
+{% else %}
+RUN apt-get update
+{% endif %}
+{% if distro == "stretch" or distro == "jessie" or distro == "buster" %}
+RUN apt-get install -y python sudo bash ca-certificates iproute2 systemd systemd-sysv python-pip inetutils-ping --force-yes && \
+    apt-get clean
+{% endif %}
+
+{% if distro == "bullseye" or distro == "bookworm" %}
+RUN apt-get install -y python3 sudo bash ca-certificates iproute2 systemd systemd-sysv python3-pip inetutils-ping && \
+    apt-get clean
+{% endif %}

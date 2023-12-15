@@ -7,10 +7,12 @@ lint: |
   yamllint .
   ansible-lint .
 platforms:
-  - name: rediscluster1
+  - &redis-anchor
+    name: rediscluster1
     groups:
       - redis
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:bullseye-slim}
+    dockerfile: ../common/Dockerfile.j2
     hostname: rediscluster1
     privileged: false
     capabilities:
@@ -26,107 +28,23 @@ platforms:
     stop_signal: 'RTMIN+3'
     networks:
       - name: "redis-cluster-network"
-  - name: rediscluster2
-    groups:
-      - redis
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
-    hostname: rediscluster2
-    privileged: false
-    capabilities:
-      - SYS_ADMIN
-    volumes:
-      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-    tmpfs:
-      - /redis
-      - /tmp
-      - /run
-      - /run/lock
-    command: '/lib/systemd/systemd'
-    stop_signal: 'RTMIN+3'
-    networks:
-      - name: "redis-cluster-network"
-  - name: rediscluster3
-    groups:
-      - redis
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
-    hostname: rediscluster3
-    privileged: false
-    capabilities:
-      - SYS_ADMIN
-    volumes:
-      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-    tmpfs:
-      - /redis
-      - /tmp
-      - /run
-      - /run/lock
-    command: '/lib/systemd/systemd'
-    stop_signal: 'RTMIN+3'
-    networks:
-      - name: "redis-cluster-network"
-  - name: rediscluster4
-    groups:
-      - redis
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
-    hostname: rediscluster4
-    privileged: false
-    capabilities:
-      - SYS_ADMIN
-    volumes:
-      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-    tmpfs:
-      - /redis
-      - /tmp
-      - /run
-      - /run/lock
-    command: '/lib/systemd/systemd'
-    stop_signal: 'RTMIN+3'
-    networks:
-      - name: "redis-cluster-network"
-  - name: rediscluster5
-    groups:
-      - redis
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
-    hostname: rediscluster5
-    privileged: false
-    capabilities:
-      - SYS_ADMIN
-    volumes:
-      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-    tmpfs:
-      - /redis
-      - /tmp
-      - /run
-      - /run/lock
-    command: '/lib/systemd/systemd'
-    stop_signal: 'RTMIN+3'
-    networks:
-      - name: "redis-cluster-network"
-  - name: rediscluster6
-    groups:
-      - redis
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
-    hostname: rediscluster6
-    privileged: false
-    capabilities:
-      - SYS_ADMIN
-    volumes:
-      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-    tmpfs:
-      - /redis
-      - /tmp
-      - /run
-      - /run/lock
-    command: '/lib/systemd/systemd'
-    stop_signal: 'RTMIN+3'
-    networks:
-      - name: "redis-cluster-network"
+  - <<: *redis-anchor
+    name: rediscluster2
+  - <<: *redis-anchor
+    name: rediscluster3
+  - <<: *redis-anchor
+    name: rediscluster4
+  - <<: *redis-anchor
+    name: rediscluster5
+  - <<: *redis-anchor
+    name: rediscluster6
+
 provisioner:
   name: ansible
   inventory:
     group_vars:
       redis:
-        redis_version: ${REDIS_VERSION:-"5.0.5"}
+        redis_version: ${REDIS_VERSION:-"7.2.3"}
         redis_cluster_legacy: ${REDIS_CLUSTER_LEGACY:-false}
         redis_ruby_gem_version: ${REDIS_RUBY_GEM:-4.1.3}
 scenario:
