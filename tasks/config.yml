@@ -1,5 +1,28 @@
 ---
 
+- name: Check if 'redis_password' is defined
+  debug:
+    msg: "Warning: The password is not defined"
+  when: redis_password is not defined
+
+- name: Redis password configuration
+  block:
+    - name: Check password complexity (fail if 'redis_password' is too weak)
+      assert:
+        that:
+          - redis_password is defined
+          - redis_password | length >= 30
+          - redis_password | regex_search('[A-Z]')
+          - redis_password | regex_search('[a-z]')
+          - redis_password | regex_search('[0-9]')
+        fail_msg: "The password must be at least 30 characters long and contain at least one uppercase letter, one lowercase letter and one number"
+    - name: Set 'redis_password' if provided
+      set_fact:
+        redis_confs: "{{ redis_confs | default({}) | combine({ 'requirepass': redis_password }) }}"
+      changed_when: false
+      no_log: true
+  when: redis_password is defined
+
 - name: REDIS | Create server conf path
   file:
     path: "{{ redis_conf_path }}"
@@ -14,7 +37,7 @@
     dest: "{{ redis_conf_path }}/redis.conf"
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
-    mode: 0644
+    mode: 0640
   notify: restart redis
 
 - name: REDIS | Copy default config

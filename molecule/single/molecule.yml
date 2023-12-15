@@ -10,7 +10,8 @@ platforms:
   - name: redis
     groups:
       - redis
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:bullseye-slim}
+    dockerfile: ../common/Dockerfile.j2
     privileged: false
     capabilities:
       - SYS_ADMIN
@@ -28,7 +29,7 @@ provisioner:
   inventory:
     group_vars:
       redis:
-        redis_version: ${REDIS_VERSION:-"5.0.5"}
+        redis_version: ${REDIS_VERSION:-"7.2.3"}
         redis_cluster_legacy: ${REDIS_CLUSTER_LEGACY:-false}
         redis_ruby_gem_version: ${REDIS_RUBY_GEM:-4.1.3}
 scenario:
