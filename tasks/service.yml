@@ -8,15 +8,7 @@
     daemon_reload: yes
   when: not redis_is_installed or redis_install_new_version
 
-- name: REDIS | Configure nodes as cluster when password is not defined
-  run_once: true
-  command: "{{ redis_conf_path }}/cluster-creator.sh"
-  when:
-    - redis_mode == 'cluster'
-    - not redis_is_installed
-    - redis_password is not defined
-
-- name: REDIS | Configure nodes as cluster with password
+- name: REDIS | Configure nodes as cluster
   run_once: true
   command: "{{ redis_conf_path }}/cluster-creator.sh"
   environment:
@@ -28,6 +20,9 @@
 
 - name: REDIS | Add instance to cluster
   command: "{{ redis_conf_path }}/upgrading-helper.sh add"
+  environment:
+    REDISCLI_AUTH: "{{ redis_password }}"
   when:
     - redis_install_new_version
     - redis_mode == 'cluster'
+    - redis_password is defined
