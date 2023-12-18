@@ -2,11 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
+## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
+
 # [4.1.1](https://github.com/idealista/redis_role/tree/4.1.0) (2023-12-18)
 ### added
 - *[#106](https://github.com/idealista/redis_role/tree/Feature/106) Force Authentication for use role @enricocotti
-
-## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
 
 # [4.1.0](https://github.com/idealista/redis_role/tree/4.1.0) (2023-12-15)
 ### Fixed
