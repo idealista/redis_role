@@ -1,4 +1,26 @@
 ---
+- name: Check if 'redis_password' is defined
+  fail:
+    msg: "Error: The role did not install because the password is not present"
+  when: redis_password is not defined
+
+- name: Redis password configuration
+  block:
+    - name: Check password complexity (fail if 'redis_password' is too weak)
+      assert:
+        that:
+          - redis_password is defined
+          - redis_password | length >= 30
+          - redis_password | regex_search('[A-Z]')
+          - redis_password | regex_search('[a-z]')
+          - redis_password | regex_search('[0-9]')
+        fail_msg: "The password must be at least 30 characters long and contain at least one uppercase letter, one lowercase letter and one number"
+    - name: Set 'redis_password' if provided
+      set_fact:
+        redis_confs: "{{ redis_confs | default({}) | combine({ 'requirepass': redis_password }) }}"
+      changed_when: false
+      no_log: true
+  when: redis_password is defined
 
 - name: REDIS | Redis already installed
   shell: '[ -x "$(command -v redis-server)" ] && echo "True" || echo "False"'
