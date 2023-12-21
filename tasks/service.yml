@@ -16,9 +16,24 @@
   when:
     - redis_mode == 'cluster'
     - not redis_is_installed
-    - redis_password is defined
+    - redis_auth
 
-- name: REDIS | Add instance to cluster
+- name: REDIS | Configure nodes as cluster without password
+  run_once: true
+  command: "{{ redis_conf_path }}/cluster-creator.sh"
+  when:
+    - redis_mode == 'cluster'
+    - not redis_is_installed
+    - not redis_auth
+
+- name: REDIS | Add instance to cluster without password
+  command: "{{ redis_conf_path }}/upgrading-helper.sh add"
+  when:
+    - redis_install_new_version
+    - redis_mode == 'cluster'
+    - not redis_auth
+
+- name: REDIS | Add instance to cluster with password
   command: "{{ redis_conf_path }}/upgrading-helper.sh add"
   environment:
     REDISCLI_AUTH: "{{ redis_password }}"
@@ -26,3 +41,4 @@
     - redis_install_new_version
     - redis_mode == 'cluster'
     - redis_password is defined
+    - redis_auth
