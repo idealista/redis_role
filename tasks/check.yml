@@ -1,10 +1,13 @@
 ---
-- name: Check if 'redis_password' is defined
-  fail:
-    msg: "Error: The role did not install because the password is not present"
-  when: redis_password is not defined
 
-- name: Redis password configuration
+- name: Generate an error if password is not set and authentication is enabled
+  assert:
+    that:
+      - redis_password is defined
+    fail_msg: "The redis_password must be set as a variable"
+  when: redis_auth
+
+- name: Verify redis password configuration
   block:
     - name: Check password complexity (fail if 'redis_password' is too weak)
       assert:
@@ -20,7 +23,7 @@
         redis_confs: "{{ redis_confs | default({}) | combine({ 'requirepass': redis_password }) }}"
       changed_when: false
       no_log: true
-  when: redis_password is defined
+  when: redis_password is defined and redis_auth  and redis_auth is defined
 
 - name: REDIS | Redis already installed
   shell: '[ -x "$(command -v redis-server)" ] && echo "True" || echo "False"'
