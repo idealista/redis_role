@@ -7,3 +7,4 @@ redis_mode: single
 
 redis_password: XohSae6Thiezeb8Tech6oobobaiCu0eeghee8ace
 redis_os_tuning: false
+redis_auth: true

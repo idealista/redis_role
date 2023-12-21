@@ -79,5 +79,12 @@ redis_confs:
   dbfilename: "dump.rdb"
   daemonize: "yes"  # mandatory for cluster node
 
+
+# if you set variable redis_auth to true authentication is enabled
+# if you set it to false it is disabled
+
+redis_auth: true
+
+# With authentication enabled and no password set the role failed,
 # use this variable to provide a password for redis authentication
 # redis_password: Password >= 30 cararacters with at least one lower case, upper case and number
