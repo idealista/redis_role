@@ -4,9 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
 
-# [4.1.1](https://github.com/idealista/redis_role/tree/4.1.0) (2023-12-18)
+# [4.2.0](https://github.com/idealista/redis_role/tree/4.2.0) (2023-12-22)
 ### added
-- *[#106](https://github.com/idealista/redis_role/tree/Feature/106) Force Authentication for use role @enricocotti
+- *[#106](https://github.com/idealista/redis_role/tree/Feature/106) Enable/Disable Authentication for Redis role with single/cluster scenarios @enricocotti
 
 # [4.1.0](https://github.com/idealista/redis_role/tree/4.1.0) (2023-12-15)
 ### Fixed
