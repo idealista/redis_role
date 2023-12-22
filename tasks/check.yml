@@ -1,6 +1,12 @@
 ---
 
-- name: Generate an error if password is not set and authentication is enabled
+- name: Check if redis_auth is defined
+  assert:
+    that:
+      - redis_auth is defined
+    fail_msg: "The redis_auth must be set as a variable (true or false)"
+
+- name: Check if password is not set and authentication is enabled
   assert:
     that:
       - redis_password is defined
