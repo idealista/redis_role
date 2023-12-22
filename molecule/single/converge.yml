@@ -1,5 +1,7 @@
 ---
 - name: Converge
   hosts: all
+  vars_files:
+    - ./group_vars/vault.yml
   roles:
     - role: redis_role
