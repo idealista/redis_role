@@ -1,21 +1,23 @@
 ---
 
-- name: Check if redis_auth is defined
+- name: REDIS | Check if redis_auth is defined
   assert:
     that:
       - redis_auth is defined
+    quiet: true
     fail_msg: "The redis_auth must be set as a variable (true or false)"
 
-- name: Check if password is not set and authentication is enabled
+- name: REDIS | Check if password is not set and authentication is enabled
   assert:
     that:
       - redis_password is defined
+    quiet: true
     fail_msg: "The redis_password must be set as a variable"
   when: redis_auth
 
-- name: Verify redis password configuration
+- name: REDIS | Verify redis password configuration
   block:
-    - name: Check password complexity (fail if 'redis_password' is too weak)
+    - name: REDIS | Check password complexity (fail if 'redis_password' is too weak)
       assert:
         that:
           - redis_password is defined
@@ -23,13 +25,14 @@
           - redis_password | regex_search('[A-Z]')
           - redis_password | regex_search('[a-z]')
           - redis_password | regex_search('[0-9]')
+        quiet: true
         fail_msg: "The password must be at least 30 characters long and contain at least one uppercase letter, one lowercase letter and one number"
-    - name: Set 'redis_password' if provided
+    - name: REDIS | Set 'redis_password' if provided
       set_fact:
         redis_confs: "{{ redis_confs | default({}) | combine({ 'requirepass': redis_password }) }}"
       changed_when: false
       no_log: true
-  when: redis_password is defined and redis_auth  and redis_auth is defined
+  when: redis_password is defined and redis_auth
 
 - name: REDIS | Redis already installed
   shell: '[ -x "$(command -v redis-server)" ] && echo "True" || echo "False"'
