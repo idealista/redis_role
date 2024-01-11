@@ -27,3 +27,4 @@ redis_confs:
   dbfilename: "dump.rdb"
   daemonize: "yes"  # mandatory for cluster node
 redis_os_tuning: false
+redis_auth: true

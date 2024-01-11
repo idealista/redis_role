@@ -79,5 +79,11 @@ redis_confs:
   dbfilename: "dump.rdb"
   daemonize: "yes"  # mandatory for cluster node
 
-# use this variable to provide a password for redis authentication
-# redis_password: XohSae6Thiezeb8Tech6oobobaiCu0eeghee8ace
+# ATTENTION since version 4.2.0 we have introduced authentication and it is important to use two variables:
+#  - redis_auth which is mandatory to have a value (true/false)
+#  - redis_password which defines the password that will be set, remember to put it
+# in the vault so that it is not left unencrypted (it must be 30 characters, with numbers, upper and lower case)
+
+# IF THESE VARIABLES ARE NOT CORRECTLY CONFIGURED, THE ROLE INSTALLATION WILL FAIL WITH AN EXPLANATORY MESSAGE.
+
+redis_auth: true

@@ -59,6 +59,13 @@ Use in a playbook:
 
 ## Usage
 
+ATTENTION since version 4.2.0 we have introduced authentication and it is important to use two variables:
+ - redis_auth which is mandatory to have a value (true/false)
+ - redis_password which defines the password that will be set, remember to put it   in the vault so that it is not left unencrypted (it must be 30 characters, with numbers, upper and lower case)
+
+IF THESE VARIABLES ARE NOT CORRECTLY CONFIGURED, THE ROLE INSTALLATION WILL FAIL WITH AN EXPLANATORY MESSAGE.
+
+
 Look to the [defaults](defaults/main.yml) properties file to see the possible configuration properties.
 
 **Note:** It's recommended to use [Prometheus Redis Exporter Role](https://github.com/idealista/prometheus_redis_exporter-role) if Prometheus monitoring is needed.

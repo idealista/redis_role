@@ -22,6 +22,8 @@
   vars_files:
     - ../../defaults/main.yml
     - ../../vars/main.yml
+    - ./group_vars/redis.yml
+    - ./group_vars/vault.yml
 
   tasks:
     - name: Download and install Goss
@@ -43,9 +45,25 @@
 
     - name: Execute Goss tests
       command: "goss -g {{ item }} validate --format {{ goss_format }}"
-      register: test_results
+      register: test_results_without_password
       with_items: "{{ test_files.stdout_lines }}"
       ignore_errors: true
+      when:
+        - not redis_auth
+
+    - name: Execute Goss tests with password
+      command: "goss -g {{ item }} validate --format {{ goss_format }}"
+      register: test_results_with_password
+      with_items: "{{ test_files.stdout_lines }}"
+      ignore_errors: true
+      environment:
+        REDISCLI_AUTH: "{{ redis_password }}"
+      when:
+        - redis_auth
+
+    - name: Assigns results to test_results
+      set_fact:
+        test_results: "{{ test_results_without_password if not redis_auth else test_results_with_password }}"
 
     - name: Display details about the goss results
       debug:
