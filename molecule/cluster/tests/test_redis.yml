@@ -48,11 +48,11 @@ service:
     running: true
 
 command:
-  {{ 'redis-cli -a ' + redis_password + ' PING' if redis_password is defined else 'redis-cli PING' }}:
+  {{ 'redis-cli PING' }}:
     exit-status: 0
     stdout:
       - PONG
-  {{ 'redis-cli -a ' + redis_password + ' CLUSTER INFO' if redis_password is defined else 'redis-cli CLUSTER INFO' }}:
+  {{ 'redis-cli CLUSTER INFO' }}:
     exit-status: 0
     stdout:
       - cluster_size:3
