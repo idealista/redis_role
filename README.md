@@ -59,7 +59,7 @@ Use in a playbook:
 
 ## Usage
 
-ATTENTION since version 4.2.0 we have introduced authentication and it is important to use two variables:
+ATTENTION since version 5.0.0 we have introduced authentication and it is important to use two variables:
  - redis_auth which is mandatory to have a value (true/false)
  - redis_password which defines the password that will be set, remember to put it   in the vault so that it is not left unencrypted (it must be 30 characters, with numbers, upper and lower case)
 
