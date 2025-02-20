@@ -14,6 +14,7 @@
     dest: /etc/systemd/system/disable_thp.service
     owner: root
     group: root
+    mode: '0644'
     backup: false
   notify: oneshot disable thp
 

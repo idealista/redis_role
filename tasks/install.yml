@@ -74,6 +74,7 @@
     url: "{{ redis_source_url }}"
     dest: /tmp
     validate_certs: no
+    mode: '0644'
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Extract sources
