@@ -1,13 +1,13 @@
 ---
 
 - name: REDIS | Create Redis group
-  group:
+  ansible.builtin.group:
     name: "{{ redis_group }}"
     state: present
   when: not redis_is_installed
 
 - name: REDIS | Create Redis user
-  user:
+  ansible.builtin.user:
     name: "{{ redis_user }}"
     group: "{{ redis_group }}"
     shell: /usr/sbin/nologin
@@ -16,7 +16,7 @@
   when: not redis_is_installed
 
 - name: REDIS | Create log directory
-  file:
+  ansible.builtin.file:
     path: "{{ redis_log_path }}"
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
@@ -25,7 +25,7 @@
   when: not redis_is_installed and redis_confs.logfile is defined
 
 - name: REDIS | Create log file
-  file:
+  ansible.builtin.file:
     path: "{{ redis_confs.logfile }}"
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
@@ -34,13 +34,13 @@
   when: not redis_is_installed and redis_confs.logfile is defined
 
 - name: REDIS | Remove instance from cluster
-  command: "{{ redis_conf_path }}/upgrading-helper.sh delete"
+  ansible.builtin.command: "{{ redis_conf_path }}/upgrading-helper.sh delete"
   when:
     - redis_install_new_version
     - redis_mode == 'cluster'
 
 - name: REDIS | Stop node
-  service:
+  ansible.builtin.service:
     name: redis-server
     state: stopped
   when:
@@ -48,21 +48,21 @@
     - redis_mode == 'cluster'
 
 - name: REDIS | Remove existing install folder
-  file:
+  ansible.builtin.file:
     state: absent
     path: "{{ redis_build_path }}"
   ignore_errors: true
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Install required libs
-  apt:
+  ansible.builtin.apt:
     name: "{{ redis_required_libs }}"
     update_cache: true
     state: present
     cache_valid_time: 3600
 
 - name: REDIS | Install cluster required libs
-  apt:
+  ansible.builtin.apt:
     name: "{{ redis_required_libs_cluster }}"
     update_cache: true
     state: present
@@ -70,50 +70,50 @@
   when: redis_mode == 'cluster'
 
 - name: REDIS | Download sources
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ redis_source_url }}"
     dest: /tmp
     validate_certs: no
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Extract sources
-  unarchive:
+  ansible.builtin.unarchive:
     copy: no
     src: "/tmp/redis-{{ redis_version }}.tar.gz"
     dest: "/tmp"
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Move sources to build path
-  command: "mv /tmp/redis-{{ redis_version }} {{ redis_build_path }}"
+  ansible.builtin.command: "mv /tmp/redis-{{ redis_version }} {{ redis_build_path }}"
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Make
-  make:
+  community.general.make:
     chdir: "{{ redis_build_path }}"
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Make test
-  make:
+  community.general.make:
     chdir: "{{ redis_build_path }}"
     target: test
   when: (not redis_is_installed or redis_install_new_version) and redis_check_build
 
 - name: REDIS | Make install
-  make:
+  community.general.make:
     chdir: "{{ redis_build_path }}"
     target: install
   become: yes
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | install Redis Ruby Gem
-  gem:
+  community.general.gem:
     name: redis
     state: present
     version: "{{ redis_ruby_gem_version }}"
   when: redis_mode == 'cluster' and redis_cluster_legacy
 
 - name: REDIS | install redis-trib (legacy)
-  copy:
+  ansible.builtin.copy:
     src: "{{ redis_build_path }}/src/redis-trib.rb"
     dest: "{{ redis_bin_path }}"
     mode: 0775
