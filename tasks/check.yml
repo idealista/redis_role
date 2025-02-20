@@ -16,6 +16,7 @@
   when: redis_auth
 
 - name: REDIS | Verify redis password configuration
+  when: redis_password is defined and redis_auth
   block:
     - name: REDIS | Check password complexity (fail if 'redis_password' is too weak)
       ansible.builtin.assert:
@@ -33,7 +34,6 @@
         redis_confs: "{{ redis_confs | default({}) | combine({'requirepass': redis_password}) }}"
       changed_when: false
       no_log: true
-  when: redis_password is defined and redis_auth
 
 - name: REDIS | Redis already installed
   ansible.builtin.shell: '[ -x "$(command -v redis-server)" ] && echo "True" || echo "False"'
