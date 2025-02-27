@@ -1,7 +1,7 @@
 ---
 
 - name: REDIS | Create server conf path
-  file:
+  ansible.builtin.file:
     path: "{{ redis_conf_path }}"
     state: directory
     owner: "{{ redis_user }}"
@@ -9,7 +9,7 @@
     mode: 0755
 
 - name: REDIS | Copy server config
-  template:
+  ansible.builtin.template:
     src: "{{ redis_server_conf_template_path }}"
     dest: "{{ redis_conf_path }}/redis.conf"
     owner: "{{ redis_user }}"
@@ -18,7 +18,7 @@
   notify: restart redis
 
 - name: REDIS | Copy default config
-  copy:
+  ansible.builtin.copy:
     src: "{{ redis_build_path }}/redis.conf"
     dest: "{{ redis_conf_path }}/redis-default.conf"
     mode: 0644
@@ -27,7 +27,7 @@
   when: include_redis_default_conf
 
 - name: REDIS | Copy manager script
-  template:
+  ansible.builtin.template:
     src: "{{ redis_manager_template_path }}"
     dest: "{{ redis_bin_path }}/instance-manager.sh"
     owner: "{{ redis_user }}"
@@ -36,7 +36,7 @@
   notify: restart redis
 
 - name: REDIS | Copy redis-server service config
-  template:
+  ansible.builtin.template:
     src: "{{ redis_service_template_path }}"
     dest: /lib/systemd/system/redis-server.service
     owner: "{{ redis_user }}"
@@ -45,7 +45,7 @@
   notify: restart redis
 
 - name: REDIS | Copy cluster creator
-  template:
+  ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "{{ redis_conf_path }}/{{ item }}"
     owner: "{{ redis_user }}"

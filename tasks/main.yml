@@ -1,27 +1,27 @@
 ---
 
 - name: REDIS | Check
-  include: check.yml
+  ansible.builtin.include_tasks: check.yml
   tags:
     - check
 
 - name: REDIS | Install
-  include: install.yml
+  ansible.builtin.include_tasks: install.yml
   tags:
     - install
 
 - name: REDIS | Configure
-  include: config.yml
+  ansible.builtin.include_tasks: config.yml
   tags:
     - configure
 
 - name: REDIS | Operating System Configure
-  include: os-config.yml
+  ansible.builtin.include_tasks: os-config.yml
   tags:
     - os-configure
   when: redis_os_tuning
 
 - name: REDIS | Service
-  include: service.yml
+  ansible.builtin.include_tasks: service.yml
   tags:
     - service

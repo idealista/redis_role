@@ -1,13 +1,13 @@
 ---
 
 - name: restart redis
-  service:
+  ansible.builtin.service:
     name: redis-server
     state: restarted
 
   when: redis_service_state != 'stopped'
 
 - name: oneshot disable thp
-  systemd:
+  ansible.builtin.systemd:
     name: disable_thp
     state: restarted

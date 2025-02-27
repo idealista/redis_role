@@ -1,7 +1,7 @@
 ---
 
 - name: REDIS | Configuring service
-  systemd:
+  ansible.builtin.systemd:
     name: redis-server
     state: "{{ redis_service_state }}"
     enabled: "{{ redis_service_enabled }}"
@@ -10,7 +10,7 @@
 
 - name: REDIS | Configure nodes as cluster
   run_once: true
-  command: "{{ redis_conf_path }}/cluster-creator.sh"
+  ansible.builtin.command: "{{ redis_conf_path }}/cluster-creator.sh"
   environment:
     REDISCLI_AUTH: "{{ redis_password }}"
   when:
@@ -20,21 +20,21 @@
 
 - name: REDIS | Configure nodes as cluster without password
   run_once: true
-  command: "{{ redis_conf_path }}/cluster-creator.sh"
+  ansible.builtin.command: "{{ redis_conf_path }}/cluster-creator.sh"
   when:
     - redis_mode == 'cluster'
     - not redis_is_installed
     - not redis_auth
 
 - name: REDIS | Add instance to cluster without password
-  command: "{{ redis_conf_path }}/upgrading-helper.sh add"
+  ansible.builtin.command: "{{ redis_conf_path }}/upgrading-helper.sh add"
   when:
     - redis_install_new_version
     - redis_mode == 'cluster'
     - not redis_auth
 
 - name: REDIS | Add instance to cluster with password
-  command: "{{ redis_conf_path }}/upgrading-helper.sh add"
+  ansible.builtin.command: "{{ redis_conf_path }}/upgrading-helper.sh add"
   environment:
     REDISCLI_AUTH: "{{ redis_password }}"
   when:
