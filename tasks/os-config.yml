@@ -3,22 +3,23 @@
 #  https://redis.io/topics/admin Redis setup hint
 
 - name: REDIS | Set overcommit on sysctl
-  sysctl:
+  ansible.posix.sysctl:
     name: vm.overcommit_memory
     value: 1
     state: present
 
 - name: REDIS | Add disable Transparent Huge Pages service
-  template:
+  ansible.builtin.template:
     src: disable_thp.service.j2
     dest: /etc/systemd/system/disable_thp.service
     owner: root
     group: root
+    mode: '0644'
     backup: false
   notify: oneshot disable thp
 
 - name: REDIS | Add disable Transparent Huge Pages script
-  copy:
+  ansible.builtin.copy:
     src: disable_thp.sh
     dest: /usr/local/bin/disable_thp.sh
     owner: root
@@ -28,7 +29,7 @@
   notify: oneshot disable thp
 
 - name: REDIS | Enable disable Transparent Huge Pages service
-  systemd:
+  ansible.builtin.systemd:
     name: disable_thp
     state: started
     enabled: true

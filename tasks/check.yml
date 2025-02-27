@@ -1,14 +1,14 @@
 ---
 
 - name: REDIS | Check if redis_auth is defined
-  assert:
+  ansible.builtin.assert:
     that:
       - redis_auth is defined
     quiet: true
     fail_msg: "The redis_auth must be set as a variable (true or false)"
 
 - name: REDIS | Check if password is not set and authentication is enabled
-  assert:
+  ansible.builtin.assert:
     that:
       - redis_password is defined
     quiet: true
@@ -16,9 +16,10 @@
   when: redis_auth
 
 - name: REDIS | Verify redis password configuration
+  when: redis_password is defined and redis_auth
   block:
     - name: REDIS | Check password complexity (fail if 'redis_password' is too weak)
-      assert:
+      ansible.builtin.assert:
         that:
           - redis_password is defined
           - redis_password | length >= 30
@@ -27,18 +28,18 @@
           - redis_password | regex_search('[0-9]')
         quiet: true
         fail_msg: "The password must be at least 30 characters long and contain at least one uppercase letter, one lowercase letter and one number"
+
     - name: REDIS | Set 'redis_password' if provided
-      set_fact:
-        redis_confs: "{{ redis_confs | default({}) | combine({ 'requirepass': redis_password }) }}"
+      ansible.builtin.set_fact:
+        redis_confs: "{{ redis_confs | default({}) | combine({'requirepass': redis_password}) }}"
       changed_when: false
       no_log: true
-  when: redis_password is defined and redis_auth
 
 - name: REDIS | Redis already installed
-  shell: '[ -x "$(command -v redis-server)" ] && echo "True" || echo "False"'
+  ansible.builtin.shell: '[ -x "$(command -v redis-server)" ] && echo "True" || echo "False"'
   register: redis_is_installed_command
   changed_when: false
 
 - name: REDIS | Set installed fact
-  set_fact:
+  ansible.builtin.set_fact:
     redis_is_installed: "{{ redis_is_installed_command.stdout }}"

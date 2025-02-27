@@ -16,7 +16,9 @@ platforms:
     capabilities:
       - SYS_ADMIN
     volumes:
-      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      - '/sys/fs/cgroup:/sys/fs/cgroup:rw'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    cgroupns_mode: host
     tmpfs:
       - /redis
       - /tmp
