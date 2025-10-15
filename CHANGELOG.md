@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/redis_role/tree/develop)
 
+## [5.2.0](https://github.com/idealista/redis_role/tree/5.2.0) (2025-10-15)
+
+[Full Changelog](https://github.com/idealista/redis_role/compare/5.1.0...5.2.0)
+
+### Added
+
+- *[#116](https://github.com/idealista/redis_role/issues/116) Add hostname mode support to create cluster  @enrico.cotti
+
+
 ## [5.1.0](https://github.com/idealista/redis_role/tree/5.1.0) (2025-02-26)
 
 ### Fixed
