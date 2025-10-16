@@ -1,5 +1,6 @@
 exclude_paths:
-  - ./molecule
+  - molecule
+  - molecule/cluster/tests/*
 parseable: true
 skip_list:
   - '204'
