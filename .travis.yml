@@ -17,7 +17,7 @@ jobs:
       install:
         - pip install pipenv
         - rm -f Pipfile
-        - pipenv install -r test-requirements-python-2.9.txt --skip-lock
+        - pipenv install -r test-requirements-2.9.txt --skip-lock
       env:
         - "MOLECULE_DISTRO=debian:bookworm-slim REDIS_VERSION=8.2.2"
     - <<: *ansible_29
