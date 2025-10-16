@@ -35,6 +35,15 @@
       changed_when: false
       no_log: true
 
+- name: REDIS | Verify hostname mode requires Redis >= 7
+  when: redis_cluster_use_hostnames | default(false) | bool
+  ansible.builtin.assert:
+    that:
+      - redis_version is defined
+      - redis_version is version('7.0.0', '>=')
+    quiet: true
+    fail_msg: "redis_cluster_use_hostnames=true not supported from: Redis {{ redis_version }} < 7. Set redis_cluster_use_hostnames=false or upgrade Redis."
+
 - name: REDIS | Redis already installed
   ansible.builtin.shell: '[ -x "$(command -v redis-server)" ] && echo "True" || echo "False"'
   register: redis_is_installed_command

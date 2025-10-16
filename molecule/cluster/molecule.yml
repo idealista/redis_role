@@ -11,7 +11,7 @@ platforms:
     name: rediscluster1
     groups:
       - redis
-    image: ${MOLECULE_DISTRO:-debian:bullseye-slim}
+    image: ${MOLECULE_DISTRO:-debian:bookworm-slim}
     dockerfile: ../common/Dockerfile.j2
     hostname: rediscluster1
     privileged: false
@@ -32,14 +32,19 @@ platforms:
       - name: "redis-cluster-network"
   - <<: *redis-anchor
     name: rediscluster2
+    hostname: rediscluster2
   - <<: *redis-anchor
     name: rediscluster3
+    hostname: rediscluster3
   - <<: *redis-anchor
     name: rediscluster4
+    hostname: rediscluster4
   - <<: *redis-anchor
     name: rediscluster5
+    hostname: rediscluster5
   - <<: *redis-anchor
     name: rediscluster6
+    hostname: rediscluster6
 
 provisioner:
   name: ansible
@@ -49,7 +54,7 @@ provisioner:
   inventory:
     group_vars:
       redis:
-        redis_version: ${REDIS_VERSION:-"7.2.3"}
+        redis_version: ${REDIS_VERSION:-"8.2.2"}
         redis_cluster_legacy: ${REDIS_CLUSTER_LEGACY:-false}
         redis_ruby_gem_version: ${REDIS_RUBY_GEM:-4.1.3}
 scenario:
