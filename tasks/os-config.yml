@@ -3,7 +3,7 @@
 #  https://redis.io/topics/admin Redis setup hint
 
 - name: REDIS | Set overcommit on sysctl
-  ansible.posix.sysctl:
+  sysctl:
     name: vm.overcommit_memory
     value: 1
     state: present
