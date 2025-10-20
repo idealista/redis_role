@@ -1,7 +1,7 @@
 ---
 
 ## General
-redis_version: 7.2.3
+redis_version: 8.2.2
 
 # Redis 5
 redis_cluster_legacy: false
@@ -87,3 +87,8 @@ redis_confs:
 # IF THESE VARIABLES ARE NOT CORRECTLY CONFIGURED, THE ROLE INSTALLATION WILL FAIL WITH AN EXPLANATORY MESSAGE.
 
 redis_auth: true
+
+# This variable redis_cluster_use_hostnames enables the use of hostnames (FQDN) instead of IPs for Redis Cluster endpoints (creation and client announcements).
+# DISCLAIMER: Requires Redis >= 7. For Redis < 7, keep this false or upgrade (older versions don’t fully support hostname endpoints).
+
+redis_cluster_use_hostnames: false

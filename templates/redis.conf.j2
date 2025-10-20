@@ -9,6 +9,12 @@ include {{ redis_conf_path }}/redis-default.conf
 {{ key }} {{ value }}
 {% endfor %}
 {% endif %}
+{% if redis_cluster_use_hostnames | default(false) %}
+cluster-announce-hostname {{ redis_cluster_advertised_host | default(inventory_hostname) }}
+cluster-preferred-endpoint-type hostname
+{% else %}
+cluster-announce-ip {{ ansible_default_ipv4.address }}
+{% endif %}
 
 {% if redis_save %}
 {% for save in redis_save %}

@@ -1,22 +1,65 @@
 ---
 dist: focal
 language: python
-python: "3.9"
+os: linux
 sudo: required
 services:
   - docker
-install:
-  - pip install -I pipenv
-  - pipenv sync
-env:
-  matrix:
-    - MOLECULE_DISTRO=debian:bookworm-slim REDIS_VERSION=7.2.3
-    - MOLECULE_DISTRO=debian:bullseye-slim REDIS_VERSION=7.2.3
-    - MOLECULE_DISTRO=debian:buster-slim REDIS_VERSION=7.2.3
-    - MOLECULE_DISTRO=debian:stretch-slim REDIS_VERSION=7.2.3
+
+before_install:
+  - echo '{"default-cgroupns-mode":"host"}' | sudo tee /etc/docker/daemon.json
+  - sudo systemctl restart docker
+
+jobs:
+  include:
+    - &ansible_29
+      python: "3.8"
+      install:
+        - pip install pipenv
+        - rm -f Pipfile
+        - pipenv install -r test-requirements-2.9.txt --skip-lock
+      env:
+        - "MOLECULE_DISTRO=debian:bookworm-slim REDIS_VERSION=8.2.2"
+    - <<: *ansible_29
+      env:
+        - "MOLECULE_DISTRO=debian:bullseye-slim REDIS_VERSION=8.2.2"
+    - <<: *ansible_29
+      env:
+        - "MOLECULE_DISTRO=debian:buster-slim REDIS_VERSION=8.2.2"
+    - <<: *ansible_29
+      env:
+        - "MOLECULE_DISTRO=debian:stretch-slim REDIS_VERSION=8.2.2"
+
+    - &ansible_5_0_1
+      python: "3.8"
+      install:
+        - pip install -I pipenv
+        - pipenv sync
+      env:
+        - "MOLECULE_DISTRO=debian:bookworm-slim REDIS_VERSION=8.2.2"
+    - <<: *ansible_5_0_1
+      env:
+        - "MOLECULE_DISTRO=debian:bullseye-slim REDIS_VERSION=8.2.2"
+    - <<: *ansible_5_0_1
+      env:
+        - "MOLECULE_DISTRO=debian:buster-slim REDIS_VERSION=8.2.2"
+    - <<: *ansible_5_0_1
+      env:
+        - "MOLECULE_DISTRO=debian:stretch-slim REDIS_VERSION=8.2.2"
+
 script:
   - travis_wait 30 pipenv run molecule test -s single
   - travis_wait 30 pipenv run molecule test -s cluster
 
 notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  webhooks:
+    urls:
+      - https://galaxy.ansible.com/api/v1/notifications/
+    on_success: change
+    on_failure: always
+  email:
+    recipients:
+      - desarrollo.benders@idealista.com
+    on_success: change
+    on_failure: always
+    if: branch = main

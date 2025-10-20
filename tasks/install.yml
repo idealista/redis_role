@@ -89,25 +89,25 @@
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Make
-  community.general.make:
+  make:
     chdir: "{{ redis_build_path }}"
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | Make test
-  community.general.make:
+  make:
     chdir: "{{ redis_build_path }}"
     target: test
   when: (not redis_is_installed or redis_install_new_version) and redis_check_build
 
 - name: REDIS | Make install
-  community.general.make:
+  make:
     chdir: "{{ redis_build_path }}"
     target: install
   become: yes
   when: not redis_is_installed or redis_install_new_version
 
 - name: REDIS | install Redis Ruby Gem
-  community.general.gem:
+  gem:
     name: redis
     state: present
     version: "{{ redis_ruby_gem_version }}"
